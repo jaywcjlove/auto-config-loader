@@ -1,0 +1,36 @@
+{
+  "name": "auto-conf",
+  "version": "0.0.1",
+  "description": "Search and load the program's configuration.",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "homepage": "https://jaywcjlove.github.io/auto-conf",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaywcjlove/auto-conf.git"
+  },
+  "scripts": {
+    "watch": "tsbb watch",
+    "build": "tsbb build",
+    "test": "tsbb test",
+    "coverage": "tsbb test --coverage --bail"
+  },
+  "keywords": [],
+  "author": "jaywcjlove",
+  "license": "MIT",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "@types/lodash.merge": "^4.6.7",
+    "lodash.merge": "^4.6.2",
+    "jiti": "^1.18.2",
+    "lodash": "^4.17.21",
+    "sucrase": "^3.32.0",
+    "yaml": "^2.3.1"
+  }
+}
