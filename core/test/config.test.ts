@@ -1,13 +1,6 @@
 import path from 'path';
 import autoConf from "../src";
 
-test('Loader cwd = undefined', () => {
-  console.log = jest.fn();
-  const data = autoConf();
-  expect(data).toBeUndefined();
-  // @ts-ignore
-  expect(console.log.mock.calls[0][0]).toBe(`AUTO_CONF:ERROR: \x1b[31;1mCan't find config file\x1b[0m`);
-});
 
 test('Loader .autoconfrc', () => {
   const data = autoConf<{ one: number; }>(undefined, {
@@ -238,4 +231,20 @@ test('Loader .config/autoconfrc.toml', () => {
     cwd: path.resolve(__dirname, '../config-example/config-dir-toml'),
   });
   expect(data).toEqual(tomlData);
+});
+
+test('Loader .autoconfrc.ts', () => {
+  const data = autoConf<{ default?: Function; projectName?: string; }>(undefined, {
+    cwd: path.resolve(__dirname, '../config-example/ext-ts'),
+  });
+  expect(data).toHaveProperty(['default', 'projectName']);
+  expect(data?.projectName).toEqual('ext-ts');
+});
+
+test('Loader cwd = undefined', () => {
+  console.log = jest.fn();
+  const data = autoConf();
+  expect(data).toBeUndefined();
+  // @ts-ignore
+  expect(console.log.mock.calls[0][0]).toBe(`AUTO_CONF:ERROR: \x1b[31;1mCan't find config file\x1b[0m`);
 });

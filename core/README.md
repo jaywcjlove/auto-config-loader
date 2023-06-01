@@ -50,14 +50,20 @@ const result = loadConf<Config>('./app/app.config.js');
 ## Option
 
 ```ts
-export type Loader<T> = Record<string, (filepath: string, content: string) => T>;
+import { LoadConfOption } from 'auto-config-loader';
+export type LoaderFunc<T> = (filepath: string, content: string, jsOption?: LoadConfOption) => T;
+export type Loader<T> = Record<string, LoaderFunc<T>>;
 export interface AutoConfOption<T> {
   searchPlaces?: string[];
   loaders?: Loader<T>;
+  /** Specify default configuration. It has the lowest priority and is applied after extending config. */
   defaluts?: T;
+  /** Resolve configuration from this working directory. The default is `process.cwd()` */
   cwd?: string;
+  /** Default transform js configuration */
+  jsOption?: LoadConfOption;
 }
-export default function autoConf<T>(namespace?: string, option?: AutoConfOption<T>): T;
+export default function autoConf<T>(namespace?: string, option?: AutoConfOption<T>): {} & T;
 ```
 
 **Default `searchPlaces`:**

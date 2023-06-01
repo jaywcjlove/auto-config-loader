@@ -1,32 +1,46 @@
 import jitiFactory from 'jiti';
-import { transform } from 'sucrase';
+import type { JITIOptions } from 'jiti/dist/types';
+import { transform, Options } from 'sucrase';
 
 let jiti: ReturnType<typeof jitiFactory> | null = null;
-function lazyJiti() {
+function lazyJiti(option: JITIOptions = {}, transformOpt = {} as Options) {
   return (
     jiti ??
     (jiti = jitiFactory(__filename, {
       interopDefault: true,
+      ...option,
       transform: (opts) => {
         return transform(opts.source, {
           transforms: ['typescript', 'imports'],
+          ...transformOpt,
         });
       },
     }))
   );
 }
 
-export function loadConf<T>(path: string): T {
+export interface LoadConfOption {
+  jiti?: boolean;
+  jitiOptions?: JITIOptions;
+  transformOption?: Options;
+}
+
+export function loadConf<T>(path: string, option: LoadConfOption = {}): T {
+  const { jiti = true, jitiOptions, transformOption } = option;
   let config = (function () {
     try {
-      return path ? require(path) : {};
+      if (jiti) {
+        return path ? lazyJiti(jitiOptions, transformOption)(path) : {};
+      } else {
+        return path ? require(path) : {};
+      }
     } catch {
-      return lazyJiti()(path);
+      return lazyJiti(jitiOptions, transformOption)(path);
     }
   })();
   return config.default ?? config;
 }
 
-export function importDefault<T>(filepath: string): T {
+export function importDefault<T>(filepath: string, content: string, option: LoadConfOption = {}): T {
   return loadConf<T>(filepath);
 }

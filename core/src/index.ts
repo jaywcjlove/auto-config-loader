@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import merge from 'lodash.merge';
-import { importDefault } from './loader/jsloader';
+import { importDefault, LoadConfOption } from './loader/jsloader';
 import { jsonLoader } from './loader/jsonloader';
 import { yamlLoader } from './loader/yamlloader';
 import { tomlLoader } from './loader/tomlloader';
@@ -11,7 +11,9 @@ export * from './loader/jsloader';
 export * from './loader/jsonloader';
 export * from './loader/yamlloader';
 export * from './loader/tomlloader';
-export type Loader<T> = Record<string, (filepath: string, content: string) => T>;
+
+export type LoaderFunc<T> = (filepath: string, content: string, jsOption?: LoadConfOption) => T;
+export type Loader<T> = Record<string, LoaderFunc<T>>;
 export interface AutoConfOption<T> {
   searchPlaces?: string[];
   loaders?: Loader<T>;
@@ -19,10 +21,12 @@ export interface AutoConfOption<T> {
   defaluts?: T;
   /** Resolve configuration from this working directory. The default is `process.cwd()` */
   cwd?: string;
+  /** Default transform js configuration */
+  jsOption?: LoadConfOption;
 }
 
 export default function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOption<T> = {}) {
-  const { searchPlaces = [], defaluts = {}, cwd = process.cwd() } = option;
+  const { searchPlaces = [], defaluts = {}, cwd = process.cwd(), jsOption } = option;
   const loaders: Loader<T> = {
     '.json': jsonLoader,
     '.yml': yamlLoader,
@@ -38,7 +42,7 @@ export default function autoConf<T>(namespace: string = 'autoconf', option: Auto
   const currentSearchPlaces = findConfigFile(namespace, cwd, searchPlaces);
   let content = '';
   let resultData: T;
-  let loaderFunc: (filepath: string, content: string) => T;
+  let loaderFunc: LoaderFunc<T>;
   try {
     if (currentSearchPlaces) {
       const extname = path.extname(currentSearchPlaces);
@@ -57,7 +61,10 @@ export default function autoConf<T>(namespace: string = 'autoconf', option: Auto
     }
 
     if (content && loaderFunc) {
-      resultData = loaderFunc(currentSearchPlaces, content);
+      resultData = loaderFunc(currentSearchPlaces, content, jsOption);
+      if (typeof resultData === 'function') {
+        return merge(defaluts, resultData, { default: resultData });
+      }
     }
     if (resultData) {
       return merge(defaluts, resultData);
