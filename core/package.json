@@ -40,11 +40,13 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
-    "@types/lodash.merge": "^4.6.7",
     "jiti": "^1.18.2",
     "lodash.merge": "^4.6.2",
     "sucrase": "^3.32.0",
     "toml-eslint-parser": "^0.6.0",
     "yaml-eslint-parser": "^1.2.2"
+  },
+  "devDependencies": {
+    "@types/lodash.merge": "^4.6.7"
   }
 }
