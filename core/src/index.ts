@@ -7,6 +7,7 @@ import { yamlLoader } from './loader/yamlloader';
 import { tomlLoader } from './loader/tomlloader';
 import { findConfigFile } from './utils';
 
+export * from './loader/jsloader';
 export type Loader<T> = Record<string, (filepath: string, content: string) => T>;
 export interface AutoConfOption<T> {
   searchPlaces?: string[];

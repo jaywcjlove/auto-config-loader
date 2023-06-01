@@ -25,6 +25,28 @@ const data = load('namespace', {
 });
 ```
 
+## Load JS
+
+Load the JS file and return the result
+
+```js
+// => app.config.js
+export default {
+  name: 'app'
+}
+```
+
+```ts
+import { loadConf } from 'auto-config-loader/load-conf';
+
+interface Config {
+  name: string;
+}
+
+const result = loadConf<Config>('./app/app.config.js');
+// => { name: 'app' }
+```
+
 ## Option
 
 ```ts

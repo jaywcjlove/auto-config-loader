@@ -5,6 +5,10 @@
   "main": "./lib/index.js",
   "type": "commonjs",
   "types": "./lib/index.d.ts",
+  "exports": {
+    ".": "./lib/index.js",
+    "./load-conf": "./lib/loader/jsloader.js"
+  },
   "homepage": "https://jaywcjlove.github.io/auto-config-loader",
   "repository": {
     "type": "git",
