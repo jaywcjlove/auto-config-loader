@@ -35,7 +35,7 @@ jobs:
         with:
           style: flat
           source: core/coverage/coverage-summary.json
-          output: core/coverage/badges.svg
+          output: core/dist/badges.svg
 
       - name: Is a tag created auto?
         id: create_tag
