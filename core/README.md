@@ -68,6 +68,8 @@ export default function autoConf<T>(namespace?: string, option?: AutoConfOption<
 
 **Default `searchPlaces`:**
 
+Discover configurations in the specified directory order.
+
 ```js
 [
   'package.json',
