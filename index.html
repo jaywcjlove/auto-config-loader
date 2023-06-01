@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto Config Loader Auto Config Loader 1.1.0</title>
-    <meta name="description" content="Search and load the program&#x27;s configuration. It has smart defaults based on traditional expectations in the JavaScript e">
+    <meta name="description" content="Find and load configuration from a package.json property, rc file, or CommonJS module. It has smart defaults based on tr">
     <meta name="keywords" content="config,config-loader,auto-config-loader">
     <link rel="stylesheet" type="text/css" href="css/main.css?v=1.25.3">
     <link rel="stylesheet" type="text/css" href="css/tocbot.css?v=1.25.3">
@@ -38,7 +38,7 @@
           <a href="https://npmjs.org/package/auto-config-loader"><img src="https://img.shields.io/npm/v/auto-config-loader.svg?style=flat&#x26;label=auto-config-loader" alt="NPM version"></a>
           <a href="https://jaywcjlove.github.io/auto-config-loader/lcov-report/"><img src="https://jaywcjlove.github.io/auto-config-loader/badges.svg" alt="Coverage Status"></a>
         </p>
-        <p>Search and load the program's configuration. It has smart defaults based on traditional expectations in the JavaScript ecosystem. But it's also flexible enough to search anywhere you want and load whatever you want.</p>
+        <p>Find and load configuration from a <code>package.json</code> property, <code>rc</code> file, or <code>CommonJS</code> module. It has smart defaults based on traditional expectations in the JavaScript ecosystem. But it's also flexible enough to search anywhere you want and load whatever you want.</p>
         <h2 id="install"><a aria-hidden="true" tabindex="-1" href="#install" class="anchor"><span class="icon icon-link"></span></a>Install</h2>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">npm</span> i auto-config-loader
 </span></code><input type="hidden" value="$ npm i auto-config-loader
@@ -60,7 +60,7 @@ const data = load(&#x27;namespace&#x27;, {
 });
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="load-js"><a aria-hidden="true" tabindex="-1" href="#load-js" class="anchor"><span class="icon icon-link"></span></a>Load JS</h2>
-        <p>Load the JS file and return the result</p>
+        <p>Load the JS file and return the result, support <code>.js</code>, <code>.cjs</code>, <code>.mjs</code>, <code>.ts</code>.</p>
         <pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1"><span class="token comment">// => app.config.js</span>
 </span><span class="code-line line-number" line="2"><span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="3">  <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'app'</span>
@@ -201,6 +201,7 @@ await load(&#x27;namespace&#x27;, {
   }
 });
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h2 id="related"><a aria-hidden="true" tabindex="-1" href="#related" class="anchor"><span class="icon icon-link"></span></a>Related</h2>
         <h2 id="contributors"><a aria-hidden="true" tabindex="-1" href="#contributors" class="anchor"><span class="icon icon-link"></span></a>Contributors</h2>
         <p>As always, thanks to our amazing contributors!</p><a href="https://github.com/jaywcjlove/auto-config-loader/graphs/contributors"><img src="https://jaywcjlove.github.io/auto-config-loader/CONTRIBUTORS.svg"></a>
         <p>Made with <a href="https://github.com/jaywcjlove/github-action-contributors">contributors</a>.</p>
@@ -215,6 +216,7 @@ await load(&#x27;namespace&#x27;, {
             <li><a href="#load-js" class="tocs-link">Load JS</a></li>
             <li><a href="#option" class="tocs-link">Option</a></li>
             <li><a href="#yaml-loader" class="tocs-link">Yaml loader</a></li>
+            <li><a href="#related" class="tocs-link">Related</a></li>
             <li><a href="#contributors" class="tocs-link">Contributors</a></li>
             <li><a href="#license" class="tocs-link">License</a></li>
           </ol>
