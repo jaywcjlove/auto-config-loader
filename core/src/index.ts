@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import merge from 'lodash.merge';
-import { importDefault, LoadConfOption } from './loader/jsloader';
+import { jsLoader, LoadConfOption } from './loader/jsloader';
 import { jsonLoader } from './loader/jsonloader';
 import { yamlLoader } from './loader/yamlloader';
 import { tomlLoader } from './loader/tomlloader';
@@ -16,6 +16,7 @@ export type LoaderFunc<T> = (filepath: string, content: string, jsOption?: LoadC
 export type Loader<T> = Record<string, LoaderFunc<T>>;
 export interface AutoConfOption<T> {
   searchPlaces?: string[];
+  /** An object that maps extensions to the loader functions responsible for loading and parsing files with those extensions. */
   loaders?: Loader<T>;
   /** Specify default configuration. It has the lowest priority and is applied after extending config. */
   defaluts?: T;
@@ -32,10 +33,10 @@ export default function autoConf<T>(namespace: string = 'autoconf', option: Auto
     '.yml': yamlLoader,
     '.yaml': yamlLoader,
     '.toml': tomlLoader,
-    '.js': importDefault,
-    '.ts': importDefault,
-    '.cjs': importDefault,
-    '.mjs': importDefault,
+    '.js': jsLoader,
+    '.ts': jsLoader,
+    '.cjs': jsLoader,
+    '.mjs': jsLoader,
     ...(option.loaders || {}),
   };
   const pkgPath = path.resolve(cwd, 'package.json');

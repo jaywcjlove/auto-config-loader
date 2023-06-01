@@ -41,6 +41,6 @@ export function loadConf<T>(path: string, option: LoadConfOption = {}): T {
   return config.default ?? config;
 }
 
-export function importDefault<T>(filepath: string, content: string, option: LoadConfOption = {}): T {
+export function jsLoader<T>(filepath: string, content: string, option: LoadConfOption = {}): T {
   return loadConf<T>(filepath, option);
 }

@@ -55,6 +55,7 @@ export type LoaderFunc<T> = (filepath: string, content: string, jsOption?: LoadC
 export type Loader<T> = Record<string, LoaderFunc<T>>;
 export interface AutoConfOption<T> {
   searchPlaces?: string[];
+  /** An object that maps extensions to the loader functions responsible for loading and parsing files with those extensions. */
   loaders?: Loader<T>;
   /** Specify default configuration. It has the lowest priority and is applied after extending config. */
   defaluts?: T;
