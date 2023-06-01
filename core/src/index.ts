@@ -4,6 +4,7 @@ import merge from 'lodash.merge';
 import { importDefault } from './loader/jsloader';
 import { jsonLoader } from './loader/jsonloader';
 import { yamlLoader } from './loader/yamlloader';
+import { tomlLoader } from './loader/tomlloader';
 import { findConfigFile } from './utils';
 
 export type Loader<T> = Record<string, (filepath: string, content: string) => T>;
@@ -17,14 +18,15 @@ export interface AutoConfOption<T> {
 export default function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOption<T> = {}) {
   const { searchPlaces = [], defaluts = {}, cwd = process.cwd() } = option;
   const loaders: Loader<T> = {
-    ...(option.loaders || {}),
     '.json': jsonLoader,
     '.yml': yamlLoader,
     '.yaml': yamlLoader,
+    '.toml': tomlLoader,
     '.js': importDefault,
     '.ts': importDefault,
     '.cjs': importDefault,
     '.mjs': importDefault,
+    ...(option.loaders || {}),
   };
   const pkgPath = path.resolve(cwd, 'package.json');
   const currentSearchPlaces = findConfigFile(namespace, cwd, searchPlaces);

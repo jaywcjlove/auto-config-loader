@@ -47,6 +47,7 @@ export default function autoConf<T>(namespace?: string, option?: AutoConfOption<
   `.${moduleName}rc.json`,
   `.${moduleName}rc.yaml`,
   `.${moduleName}rc.yml`,
+  `.${moduleName}rc.toml`,
   `.${moduleName}rc.js`,
   `.${moduleName}rc.ts`,
   `.${moduleName}rc.cjs`,
@@ -55,6 +56,7 @@ export default function autoConf<T>(namespace?: string, option?: AutoConfOption<
   `.config/${moduleName}rc.json`,
   `.config/${moduleName}rc.yaml`,
   `.config/${moduleName}rc.yml`,
+  `.config/${moduleName}rc.toml`,
   `.config/${moduleName}rc.js`,
   `.config/${moduleName}rc.ts`,
   `.config/${moduleName}rc.cjs`,
@@ -65,6 +67,8 @@ export default function autoConf<T>(namespace?: string, option?: AutoConfOption<
   `${moduleName}.config.mjs`,
 ]
 ```
+
+Configurations are loaded sequentially, and the configuration file search is terminated when a configuration file exists.
 
 ## Yaml loader
 

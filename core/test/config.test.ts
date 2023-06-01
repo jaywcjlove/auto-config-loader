@@ -201,3 +201,41 @@ test('Loader .config/autoconfrc.yaml', () => {
     'What It Is': 'YAML is a human-friendly data serialization language for all programming languages.'
   });
 });
+
+const tomlData = {
+  title: 'TOML 示例',
+  owner: {
+    name: "Tom Preston-Werner",
+    dob: new Date('1979-05-27T07:32:00-08:00')
+  },
+  database: {
+    enabled: true,
+    ports: [ 8000, 8001, 8002 ],
+    data: [ ["delta", "phi"], [3.14] ],
+    temp_targets: { cpu: 79.5, case: 72.0 },
+  },
+  servers: {
+    alpha: {
+      ip: "10.0.0.1",
+      role: "前端"
+    },
+    beta: {
+      ip: "10.0.0.2",
+      role: "后端"
+    },
+  }
+}
+
+test('Loader .autoconfrc.toml', () => {
+  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+    cwd: path.resolve(__dirname, '../config-example/ext-toml'),
+  });
+  expect(data).toEqual(tomlData);
+});
+
+test('Loader .config/autoconfrc.toml', () => {
+  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+    cwd: path.resolve(__dirname, '../config-example/config-dir-toml'),
+  });
+  expect(data).toEqual(tomlData);
+});
