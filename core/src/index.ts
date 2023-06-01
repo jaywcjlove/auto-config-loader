@@ -8,11 +8,16 @@ import { tomlLoader } from './loader/tomlloader';
 import { findConfigFile } from './utils';
 
 export * from './loader/jsloader';
+export * from './loader/jsonloader';
+export * from './loader/yamlloader';
+export * from './loader/tomlloader';
 export type Loader<T> = Record<string, (filepath: string, content: string) => T>;
 export interface AutoConfOption<T> {
   searchPlaces?: string[];
   loaders?: Loader<T>;
+  /** Specify default configuration. It has the lowest priority and is applied after extending config. */
   defaluts?: T;
+  /** Resolve configuration from this working directory. The default is `process.cwd()` */
   cwd?: string;
 }
 
