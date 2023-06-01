@@ -135,11 +135,11 @@ await load('namespace', {
 
 ## Related
 
-- [proload](https://github.com/natemoo-re/proload) Searches for and loads your tool's JavaScript configuration files with full support for CJS, ESM, TypeScript and more.
 - [cosmiconfig](https://github.com/cosmiconfig/cosmiconfig) Find and load configuration from a package.json property, rc file, or CommonJS module
 - [cjson](https://www.npmjs.com/package/cjson) Comments enabled json loader (Commented JavaScript Object Notation)
 - [Config Loader](https://www.npmjs.com/package/@web/config-loader) Load user config files for node js projects.
 - [Lilconfig](https://www.npmjs.com/package/lilconfig) Zero-dependency nodejs config seeker.
+- [proload](https://github.com/natemoo-re/proload) Searches for and loads your tool's JavaScript configuration files with full support for CJS, ESM, TypeScript and more.
 - [rc](https://github.com/dominictarr/rc) The non-configurable configuration loader for lazy people.
 
 ## Contributors
