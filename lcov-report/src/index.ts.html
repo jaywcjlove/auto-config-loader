@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>25/25</span>
+                <span class='fraction'>27/27</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.23% </span>
+                <span class="strong">95.65% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>20/21</span>
+                <span class='fraction'>22/23</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>25/25</span>
+                <span class='fraction'>27/27</span>
             </div>
         
             
@@ -132,7 +132,14 @@
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -156,8 +163,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,21 +179,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">23x</span>
-<span class="cline-any cline-yes">23x</span>
-<span class="cline-any cline-yes">23x</span>
+<span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">20x</span>
-<span class="cline-any cline-yes">20x</span>
-<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -190,8 +201,11 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">23x</span>
+<span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">26x</span>
 <span class="cline-any cline-yes">24x</span>
@@ -204,7 +218,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import fs from 'fs';
 import path from 'path';
 import merge from 'lodash.merge';
-import { importDefault } from './loader/jsloader';
+import { importDefault, LoadConfOption } from './loader/jsloader';
 import { jsonLoader } from './loader/jsonloader';
 import { yamlLoader } from './loader/yamlloader';
 import { tomlLoader } from './loader/tomlloader';
@@ -214,7 +228,9 @@ export * from './loader/jsloader';
 export * from './loader/jsonloader';
 export * from './loader/yamlloader';
 export * from './loader/tomlloader';
-export type Loader&lt;T&gt; = Record&lt;string, (filepath: string, content: string) =&gt; T&gt;;
+&nbsp;
+export type LoaderFunc&lt;T&gt; = (filepath: string, content: string, jsOption?: LoadConfOption) =&gt; T;
+export type Loader&lt;T&gt; = Record&lt;string, LoaderFunc&lt;T&gt;&gt;;
 export interface AutoConfOption&lt;T&gt; {
   searchPlaces?: string[];
   loaders?: Loader&lt;T&gt;;
@@ -222,10 +238,12 @@ export interface AutoConfOption&lt;T&gt; {
   defaluts?: T;
   /** Resolve configuration from this working directory. The default is `process.cwd()` */
   cwd?: string;
+  /** Default transform js configuration */
+  jsOption?: LoadConfOption;
 }
 &nbsp;
 export default function autoConf&lt;T&gt;(namespace: string = 'autoconf', option: AutoConfOption&lt;T&gt; = {}) {
-  const { searchPlaces = [], defaluts = {}, cwd = process.cwd() } = option;
+  const { searchPlaces = [], defaluts = {}, cwd = process.cwd(), jsOption } = option;
   const loaders: Loader&lt;T&gt; = {
     '.json': jsonLoader,
     '.yml': yamlLoader,
@@ -241,7 +259,7 @@ export default function autoConf&lt;T&gt;(namespace: string = 'autoconf', option
   const currentSearchPlaces = findConfigFile(namespace, cwd, searchPlaces);
   let content = '';
   let resultData: T;
-  let loaderFunc: (filepath: string, content: string) =&gt; T;
+  let loaderFunc: LoaderFunc&lt;T&gt;;
   try {
     if (currentSearchPlaces) {
       const extname = path.extname(currentSearchPlaces);
@@ -260,7 +278,10 @@ export default function autoConf&lt;T&gt;(namespace: string = 'autoconf', option
     }
 &nbsp;
     if (content &amp;&amp; loaderFunc) {
-      resultData = loaderFunc(currentSearchPlaces, content);
+      resultData = loaderFunc(currentSearchPlaces, content, jsOption);
+      if (typeof resultData === 'function') {
+        return merge(defaluts, resultData, { default: resultData });
+      }
     }
     if (resultData) {
       return merge(defaluts, resultData);
@@ -277,7 +298,7 @@ export default function autoConf&lt;T&gt;(namespace: string = 'autoconf', option
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-01T12:55:02.963Z
+                at 2023-06-01T16:26:31.886Z
             </div>
         <script src="../prettify.js"></script>
         <script>
