@@ -1,4 +1,4 @@
-Auto Conf
+Auto Config Loader
 ===
 
 Search and load the program's configuration. It has smart defaults based on traditional expectations in the JavaScript ecosystem. But it's also flexible enough to search anywhere you want and load whatever you want.
@@ -6,13 +6,13 @@ Search and load the program's configuration. It has smart defaults based on trad
 ## Install
 
 ```bash
-$ npm i auto-conf
+$ npm i auto-config-loader
 ```
 
 ## Quick start
 
 ```js
-import load from 'auto-conf';
+import load from 'auto-config-loader';
 
 const data = load('namespace', {
   defaults: {
@@ -64,7 +64,7 @@ export default function autoConf<T>(namespace?: string, option?: AutoConfOption<
 This is an example, the default `yaml`/`yml` does not require a loader.
 
 ```js
-import load from 'auto-conf';
+import load from 'auto-config-loader';
 import yaml from 'yaml';
 
 function loadYaml(filepath, content) {
@@ -90,8 +90,8 @@ await load('namespace', {
 
 As always, thanks to our amazing contributors!
 
-<a href="https://github.com/jaywcjlove/auto-conf/graphs/contributors">
-  <img src="https://jaywcjlove.github.io/auto-conf/CONTRIBUTORS.svg" />
+<a href="https://github.com/jaywcjlove/auto-config-loader/graphs/contributors">
+  <img src="https://jaywcjlove.github.io/auto-config-loader/CONTRIBUTORS.svg" />
 </a>
 
 Made with [contributors](https://github.com/jaywcjlove/github-action-contributors).

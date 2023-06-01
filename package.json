@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jaywcjlove/auto-conf.git"
+    "url": "https://github.com/jaywcjlove/auto-config-loader.git"
   },
   "engines": {
     "node": ">=16.0.0"

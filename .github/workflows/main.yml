@@ -17,7 +17,7 @@ jobs:
         working-directory: core
 
       - run: npm install idoc@1.25.3 -g
-      - run: idoc -s "Auto Conf {{version}}"
+      - run: idoc -s "Auto Config Loader {{version}}"
         working-directory: core
 
       - run: npm run coverage && cp -rp coverage/lcov-report ./dist
@@ -76,12 +76,12 @@ jobs:
           name: ${{ steps.create_tag.outputs.version }}
           tag: ${{ steps.create_tag.outputs.version }}
           body: |
-            [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/typenexus@${{steps.create_tag.outputs.versionNumber}}/file/README.md)
+            [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/auto-config-loader@${{steps.create_tag.outputs.versionNumber}}/file/README.md)
             
-            Documentation ${{ steps.changelog.outputs.tag }}: https://raw.githack.com/jaywcjlove/typenexus/${{ steps.changelog.outputs.gh-pages-short-hash }}/index.html  
+            Documentation ${{ steps.changelog.outputs.tag }}: https://raw.githack.com/jaywcjlove/auto-config-loader/${{ steps.changelog.outputs.gh-pages-short-hash }}/index.html  
 
             ```bash
-            npm i typenexus@${{steps.create_tag.outputs.versionNumber}}
+            npm i auto-config-loader@${{steps.create_tag.outputs.versionNumber}}
             ```
             ${{ steps.changelog.outputs.compareurl }}
             

@@ -1,13 +1,13 @@
 {
-  "name": "auto-conf",
+  "name": "auto-config-loader",
   "version": "0.0.1",
   "description": "Search and load the program's configuration.",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
-  "homepage": "https://jaywcjlove.github.io/auto-conf",
+  "homepage": "https://jaywcjlove.github.io/auto-config-loader",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jaywcjlove/auto-conf.git"
+    "url": "https://github.com/jaywcjlove/auto-config-loader.git"
   },
   "scripts": {
     "watch": "tsbb watch",
@@ -15,7 +15,11 @@
     "test": "tsbb test",
     "coverage": "tsbb test --coverage --bail"
   },
-  "keywords": [],
+  "keywords": [
+    "config",
+    "config-loader",
+    "auto-config-loader"
+  ],
   "author": "jaywcjlove",
   "license": "MIT",
   "files": [
