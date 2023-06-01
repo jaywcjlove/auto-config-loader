@@ -125,3 +125,79 @@ test('Loader .config/autoconfrc.mjs', () => {
     projectName: 'ext-config-mjs'
   });
 });
+
+test('Loader .config/autoconfrc.cjs', () => {
+  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+    defaluts: {
+      projectName: 'name'
+    },
+    cwd: path.resolve(__dirname, '../config-example/config-dir-cjs'),
+  });
+  expect(data).toEqual({
+    projectName: 'ext-config-cjs'
+  });
+});
+
+test('Loader .config/autoconfrc.js', () => {
+  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+    defaluts: {
+      projectName: 'name'
+    },
+    cwd: path.resolve(__dirname, '../config-example/config-dir-js'),
+  });
+  expect(data).toEqual({
+    projectName: 'ext-config-js'
+  });
+});
+
+test('Loader .config/autoconfrc.ts', () => {
+  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+    defaluts: {
+      projectName: 'name'
+    },
+    cwd: path.resolve(__dirname, '../config-example/config-dir-ts'),
+  });
+  expect(data).toEqual({
+    projectName: 'ext-config-ts'
+  });
+});
+
+test('Loader .autoconfrc.yaml', () => {
+  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+    cwd: path.resolve(__dirname, '../config-example/ext-yaml'),
+  });
+  expect(data).toEqual({
+    YAML: "YAML Ain't Markup Language™",
+    'What It Is': 'YAML is a human-friendly data serialization language for all programming languages.'
+  });
+});
+
+test('Loader .autoconfrc.yml', () => {
+  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+    cwd: path.resolve(__dirname, '../config-example/ext-yml'),
+  });
+  expect(data).toEqual({
+    YAML: "YAML Ain't Markup Language™",
+    'What It Is': 'YAML is a human-friendly data serialization language for all programming languages.'
+  });
+});
+
+test('Loader .config/autoconfrc.yml', () => {
+  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+    cwd: path.resolve(__dirname, '../config-example/config-dir-yml'),
+  });
+  expect(data).toEqual({
+    YAML: "YAML Ain't Markup Language™",
+    'What It Is': 'YAML is a human-friendly data serialization language for all programming languages.'
+  });
+});
+
+test('Loader .config/autoconfrc.yaml', () => {
+  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+    cwd: path.resolve(__dirname, '../config-example/config-dir-yaml'),
+  });
+  expect(data).toEqual({
+    YAML: "YAML Ain't Markup Language™",
+    'What It Is': 'YAML is a human-friendly data serialization language for all programming languages.'
+  });
+});

@@ -26,6 +26,11 @@
     "lib",
     "src"
   ],
+  "jest": {
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/?!(.*)"
+    ]
+  },
   "engines": {
     "node": ">=16.0.0"
   },
