@@ -42,5 +42,5 @@ export function loadConf<T>(path: string, option: LoadConfOption = {}): T {
 }
 
 export function importDefault<T>(filepath: string, content: string, option: LoadConfOption = {}): T {
-  return loadConf<T>(filepath);
+  return loadConf<T>(filepath, option);
 }

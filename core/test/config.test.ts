@@ -241,6 +241,17 @@ test('Loader .autoconfrc.ts', () => {
   expect(data?.projectName).toEqual('ext-ts');
 });
 
+test('Loader .autoconfrc.ts (option={ jiti: false })', () => {
+  const data = autoConf<{ default?: Function; projectName?: string; }>(undefined, {
+    cwd: path.resolve(__dirname, '../config-example/ext-ts'),
+    jsOption: {
+      jiti: false,
+    }
+  });
+  expect(data).toHaveProperty(['default']);
+  expect(data?.projectName).toBeUndefined();
+});
+
 test('Loader cwd = undefined', () => {
   console.log = jest.fn();
   const data = autoConf();
