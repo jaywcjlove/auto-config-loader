@@ -1,6 +1,10 @@
 Auto Config Loader
 ===
 
+[![CI](https://github.com/jaywcjlove/auto-config-loader/actions/workflows/main.yml/badge.svg)](https://github.com/jaywcjlove/auto-config-loader/actions/workflows/main.yml)
+[![NPM version](https://img.shields.io/npm/v/auto-config-loader.svg?style=flat&label=auto-config-loader)](https://npmjs.org/package/auto-config-loader)
+[![Coverage Status](https://jaywcjlove.github.io/auto-config-loader/badges.svg)](https://jaywcjlove.github.io/auto-config-loader/lcov-report/)
+
 Search and load the program's configuration. It has smart defaults based on traditional expectations in the JavaScript ecosystem. But it's also flexible enough to search anywhere you want and load whatever you want.
 
 ## Install
