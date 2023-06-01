@@ -11,6 +11,7 @@ export function findConfigFile(moduleName: string, root: string, searchPlaces: s
     `.${moduleName}rc.js`,
     `.${moduleName}rc.ts`,
     `.${moduleName}rc.cjs`,
+    `.${moduleName}rc.mjs`,
     `.config/${moduleName}rc`,
     `.config/${moduleName}rc.json`,
     `.config/${moduleName}rc.yaml`,
@@ -18,9 +19,11 @@ export function findConfigFile(moduleName: string, root: string, searchPlaces: s
     `.config/${moduleName}rc.js`,
     `.config/${moduleName}rc.ts`,
     `.config/${moduleName}rc.cjs`,
+    `.config/${moduleName}rc.mjs`,
     `${moduleName}.config.js`,
     `${moduleName}.config.ts`,
     `${moduleName}.config.cjs`,
+    `${moduleName}.config.mjs`,
   ];
   for (const file of data) {
     const filePath = path.resolve(root, file);

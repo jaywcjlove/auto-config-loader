@@ -50,16 +50,19 @@ export default function autoConf<T>(namespace?: string, option?: AutoConfOption<
   `.${moduleName}rc.js`,
   `.${moduleName}rc.ts`,
   `.${moduleName}rc.cjs`,
+  `.${moduleName}rc.mjs`,
   `.config/${moduleName}rc`,
   `.config/${moduleName}rc.json`,
   `.config/${moduleName}rc.yaml`,
   `.config/${moduleName}rc.yml`,
   `.config/${moduleName}rc.js`,
-  `.config/${moduleName}rc.jts`,
+  `.config/${moduleName}rc.ts`,
   `.config/${moduleName}rc.cjs`,
+  `.config/${moduleName}rc.mjs`,
   `${moduleName}.config.js`,
   `${moduleName}.config.ts`,
   `${moduleName}.config.cjs`,
+  `${moduleName}.config.mjs`,
 ]
 ```
 
