@@ -64,6 +64,11 @@ export interface AutoConfOption<T> {
   /** Default transform js configuration */
   jsOption?: LoadConfOption;
 }
+/**
+ * Find and load configuration from a `package.json` property, `rc` file, or `CommonJS` module.
+ * @param namespace {string} Configuration base name. The default is `autoconf`.
+ * @param option 
+ */
 export default function autoConf<T>(namespace?: string, option?: AutoConfOption<T>): {} & T;
 ```
 

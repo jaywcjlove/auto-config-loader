@@ -26,6 +26,11 @@ export interface AutoConfOption<T> {
   jsOption?: LoadConfOption;
 }
 
+/**
+ * Find and load configuration from a `package.json` property, `rc` file, or `CommonJS` module.
+ * @param namespace {string} Configuration base name. The default is `autoconf`.
+ * @param option
+ */
 export default function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOption<T> = {}) {
   const { searchPlaces = [], defaluts = {}, cwd = process.cwd(), jsOption } = option;
   const loaders: Loader<T> = {
