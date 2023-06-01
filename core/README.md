@@ -5,7 +5,7 @@ Auto Config Loader
 [![NPM version](https://img.shields.io/npm/v/auto-config-loader.svg?style=flat&label=auto-config-loader)](https://npmjs.org/package/auto-config-loader)
 [![Coverage Status](https://jaywcjlove.github.io/auto-config-loader/badges.svg)](https://jaywcjlove.github.io/auto-config-loader/lcov-report/)
 
-Search and load the program's configuration. It has smart defaults based on traditional expectations in the JavaScript ecosystem. But it's also flexible enough to search anywhere you want and load whatever you want.
+Find and load configuration from a `package.json` property, `rc` file, or `CommonJS` module. It has smart defaults based on traditional expectations in the JavaScript ecosystem. But it's also flexible enough to search anywhere you want and load whatever you want.
 
 ## Install
 
@@ -27,7 +27,7 @@ const data = load('namespace', {
 
 ## Load JS
 
-Load the JS file and return the result
+Load the JS file and return the result, support `.js`, `.cjs`, `.mjs`, `.ts`.
 
 ```js
 // => app.config.js
@@ -118,6 +118,8 @@ await load('namespace', {
   }
 });
 ```
+
+## Related
 
 ## Contributors
 
