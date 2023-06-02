@@ -145,7 +145,12 @@
 <a name='L80'></a><a href='#L80'>80</a>
 <a name='L81'></a><a href='#L81'>81</a>
 <a name='L82'></a><a href='#L82'>82</a>
-<a name='L83'></a><a href='#L83'>83</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -179,8 +184,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">28x</span>
-<span class="cline-any cline-yes">28x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-yes">35x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -191,21 +198,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">28x</span>
-<span class="cline-any cline-yes">28x</span>
-<span class="cline-any cline-yes">28x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">28x</span>
-<span class="cline-any cline-yes">28x</span>
-<span class="cline-any cline-yes">25x</span>
-<span class="cline-any cline-yes">25x</span>
-<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">22x</span>
-<span class="cline-any cline-yes">22x</span>
-<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -213,14 +223,14 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">28x</span>
-<span class="cline-any cline-yes">25x</span>
-<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">33x</span>
+<span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -230,16 +240,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import fs from 'fs';
 import path from 'path';
 import merge from 'lodash.merge';
-import { jsLoader, LoadConfOption } from './loader/jsloader';
-import { jsonLoader } from './loader/jsonloader';
-import { yamlLoader } from './loader/yamlloader';
-import { tomlLoader } from './loader/tomlloader';
+import { jsLoader, LoadConfOption } from './loader/js';
+import { jsonLoader } from './loader/json';
+import { yamlLoader } from './loader/yaml';
+import { tomlLoader } from './loader/toml';
+import { iniLoader } from './loader/ini';
 import { findConfigFile } from './utils';
 &nbsp;
-export * from './loader/jsloader';
-export * from './loader/jsonloader';
-export * from './loader/yamlloader';
-export * from './loader/tomlloader';
+export * from './loader/js';
+export * from './loader/json';
+export * from './loader/yaml';
+export * from './loader/toml';
+export * from './loader/ini';
 &nbsp;
 export type LoaderFunc&lt;T&gt; = (filepath: string, content: string, jsOption?: LoadConfOption) =&gt; T;
 export type Loader&lt;T&gt; = Record&lt;string, LoaderFunc&lt;T&gt;&gt;;
@@ -263,10 +275,13 @@ export interface AutoConfOption&lt;T&gt; {
 export default function autoConf&lt;T&gt;(namespace: string = 'autoconf', option: AutoConfOption&lt;T&gt; = {}) {
   const { searchPlaces = [], defaluts = {}, cwd = process.cwd(), jsOption } = option;
   const loaders: Loader&lt;T&gt; = {
-    '.json': jsonLoader,
     '.yml': yamlLoader,
     '.yaml': yamlLoader,
+    '.ini': iniLoader,
     '.toml': tomlLoader,
+    '.json': jsonLoader,
+    '.json5': jsonLoader,
+    '.jsonc': jsonLoader,
     '.js': jsLoader,
     '.ts': jsLoader,
     '.cjs': jsLoader,
@@ -316,7 +331,7 @@ export default function autoConf&lt;T&gt;(namespace: string = 'autoconf', option
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-02T01:05:38.221Z
+                at 2023-06-02T05:32:56.756Z
             </div>
         <script src="../prettify.js"></script>
         <script>
