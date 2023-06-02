@@ -21,7 +21,7 @@ export interface AutoConfOption<T> {
   /** An object that maps extensions to the loader functions responsible for loading and parsing files with those extensions. */
   loaders?: Loader<T>;
   /** Specify default configuration. It has the lowest priority and is applied after extending config. */
-  defaluts?: T;
+  default?: T;
   /** Resolve configuration from this working directory. The default is `process.cwd()` */
   cwd?: string;
   /** Default transform js configuration */
@@ -35,7 +35,7 @@ export interface AutoConfOption<T> {
  * @param option
  */
 export default function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOption<T> = {}) {
-  const { searchPlaces = [], defaluts = {}, cwd = process.cwd(), ignoreLog = false, jsOption } = option;
+  const { searchPlaces = [], default: defaultValue = {}, cwd = process.cwd(), ignoreLog = false, jsOption } = option;
   const loaders: Loader<T> = {
     '.yml': yamlLoader,
     '.yaml': yamlLoader,
@@ -75,11 +75,11 @@ export default function autoConf<T>(namespace: string = 'autoconf', option: Auto
     if (content && loaderFunc) {
       resultData = loaderFunc(currentSearchPlaces, content, jsOption);
       if (typeof resultData === 'function') {
-        return merge(defaluts, resultData, { default: resultData });
+        return merge(defaultValue, resultData, { default: resultData });
       }
     }
     if (resultData) {
-      return merge(defaluts, resultData);
+      return merge(defaultValue, resultData);
     }
     throw new Error(`Can't find config file`);
   } catch (error) {

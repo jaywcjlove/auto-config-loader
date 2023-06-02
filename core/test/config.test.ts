@@ -140,7 +140,7 @@ test('Loader .config/autoconfrc', () => {
 
 test('Loader .config/autoconfrc.json', () => {
   const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
-    defaluts: {
+    default: {
       projectName: 'name'
     },
     cwd: path.resolve(__dirname, '../../config-example/config-dir-rc'),
@@ -153,7 +153,7 @@ test('Loader .config/autoconfrc.json', () => {
 
 test('Loader .config/autoconfrc.mjs', () => {
   const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
-    defaluts: {
+    default: {
       projectName: 'name'
     },
     cwd: path.resolve(__dirname, '../../config-example/config-dir-mjs'),
@@ -165,7 +165,7 @@ test('Loader .config/autoconfrc.mjs', () => {
 
 test('Loader .config/autoconfrc.cjs', () => {
   const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
-    defaluts: {
+    default: {
       projectName: 'name'
     },
     cwd: path.resolve(__dirname, '../../config-example/config-dir-cjs'),
@@ -177,7 +177,7 @@ test('Loader .config/autoconfrc.cjs', () => {
 
 test('Loader .config/autoconfrc.js', () => {
   const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
-    defaluts: {
+    default: {
       projectName: 'name'
     },
     cwd: path.resolve(__dirname, '../../config-example/config-dir-js'),
@@ -189,7 +189,7 @@ test('Loader .config/autoconfrc.js', () => {
 
 test('Loader .config/autoconfrc.ts', () => {
   const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
-    defaluts: {
+    default: {
       projectName: 'name'
     },
     cwd: path.resolve(__dirname, '../../config-example/config-dir-ts'),
