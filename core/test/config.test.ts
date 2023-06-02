@@ -35,6 +35,24 @@ test('Loader .autoconfrc.json5', () => {
   expect(data?.notANumber).toBe(NaN);
 });
 
+test('Loader .config/autoconfrc.json5', () => {
+  const data = autoConf<any>(undefined, {
+    cwd: path.resolve(__dirname, '../config-example/config-dir-json5'),
+  });
+  expect(data?.projectName).toBe('ext-json');
+  expect(data?.name).toBe('my-app');
+  expect(data?.max).toBe(Infinity);
+  expect(data?.min).toBe(-Infinity);
+  expect(data?.notANumber).toBe(NaN);
+});
+
+test('Loader .config/autoconfrc.jsonc', () => {
+  const data = autoConf<any>(undefined, {
+    cwd: path.resolve(__dirname, '../config-example/config-dir-jsonc'),
+  });
+  expect(data?.projectName).toBe('ext-jsonc');
+});
+
 test('Loader .autoconfrc.jsonc', () => {
   const data = autoConf<{ projectName: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../config-example/ext-jsonc'),
@@ -265,6 +283,39 @@ test('Loader .autoconfrc.ts', () => {
   });
   expect(data).toHaveProperty(['default', 'projectName']);
   expect(data?.projectName).toEqual('ext-ts');
+});
+
+const iniData = {
+  "database": {
+    "database": "use_this_database",
+    "password": "dbpassword",
+    "user": "dbuser",
+  },
+  "paths": {
+    "default": {
+      "array": [
+        "first value",
+        "second value",
+        "third value",
+      ],
+      "datadir": "/var/lib/data",
+    },
+  },
+  "scope": "global",
+}
+
+test('Loader .autoconfrc.ini', () => {
+  const data = autoConf<any>(undefined, {
+    cwd: path.resolve(__dirname, '../config-example/ext-ini'),
+  });
+  expect(data).toEqual(iniData);
+});
+
+test('Loader .config/autoconfrc.ini', () => {
+  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+    cwd: path.resolve(__dirname, '../config-example/config-dir-ini'),
+  });
+  expect(data).toEqual(iniData);
 });
 
 test('Loader .autoconfrc.ts (option={ jiti: false })', () => {

@@ -5,12 +5,14 @@ import { jsLoader, LoadConfOption } from './loader/jsloader';
 import { jsonLoader } from './loader/jsonloader';
 import { yamlLoader } from './loader/yamlloader';
 import { tomlLoader } from './loader/tomlloader';
+import { iniLoader } from './loader/ini';
 import { findConfigFile } from './utils';
 
 export * from './loader/jsloader';
 export * from './loader/jsonloader';
 export * from './loader/yamlloader';
 export * from './loader/tomlloader';
+export * from './loader/ini';
 
 export type LoaderFunc<T> = (filepath: string, content: string, jsOption?: LoadConfOption) => T;
 export type Loader<T> = Record<string, LoaderFunc<T>>;
@@ -36,6 +38,7 @@ export default function autoConf<T>(namespace: string = 'autoconf', option: Auto
   const loaders: Loader<T> = {
     '.yml': yamlLoader,
     '.yaml': yamlLoader,
+    '.ini': iniLoader,
     '.toml': tomlLoader,
     '.json': jsonLoader,
     '.json5': jsonLoader,

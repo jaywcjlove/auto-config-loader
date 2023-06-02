@@ -9,7 +9,7 @@ Find and load configuration from a `package.json` property, `rc` file, or `Commo
 
 ## Features
 
-- Support [JSON](https://www.json.org), [JSONC](https://github.com/microsoft/node-jsonc-parser), [JSON5](), [YAML](https://yaml.org/), [TOML](https://toml.io), CJS, [Typescript](https://www.typescriptlang.org/), and ESM config load.
+- Support [JSON](https://www.json.org), [JSONC](https://github.com/microsoft/node-jsonc-parser), [JSON5](https://json5.org/), [YAML](https://yaml.org/), [TOML](https://toml.io), [INI](https://en.wikipedia.org/wiki/INI_file), [CJS](http://www.commonjs.org), [Typescript](https://www.typescriptlang.org/), and ESM config load.
 - Reads config from the nearest `package.json` file
 
 ## Install
@@ -107,6 +107,7 @@ Discover configurations in the specified directory order. When configuring a too
   `.${moduleName}rc.yaml`,
   `.${moduleName}rc.yml`,
   `.${moduleName}rc.toml`,
+  `.${moduleName}rc.ini`,
   `.${moduleName}rc.js`,
   `.${moduleName}rc.ts`,
   `.${moduleName}rc.cjs`,
@@ -118,6 +119,7 @@ Discover configurations in the specified directory order. When configuring a too
   `.config/${moduleName}rc.yaml`,
   `.config/${moduleName}rc.yml`,
   `.config/${moduleName}rc.toml`,
+  `.config/${moduleName}rc.ini`,
   `.config/${moduleName}rc.js`,
   `.config/${moduleName}rc.ts`,
   `.config/${moduleName}rc.cjs`,
