@@ -1,0 +1,14 @@
+{
+  // 注释
+  "projectName": "ext-json",
+  name: 'my-app',
+  // 允许使用十六进制和八进制数值
+  hex: 0x1a,
+  octal: 0o755,
+  // 允许使用 NaN、Infinity 和 -Infinity
+  max: Infinity,
+  min: -Infinity,
+  notANumber: NaN,
+  // 允许使用尾随逗号
+  'react-dom': '^16.13.1',
+}

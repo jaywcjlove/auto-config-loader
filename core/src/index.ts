@@ -34,10 +34,12 @@ export interface AutoConfOption<T> {
 export default function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOption<T> = {}) {
   const { searchPlaces = [], defaluts = {}, cwd = process.cwd(), jsOption } = option;
   const loaders: Loader<T> = {
-    '.json': jsonLoader,
     '.yml': yamlLoader,
     '.yaml': yamlLoader,
     '.toml': tomlLoader,
+    '.json': jsonLoader,
+    '.json5': jsonLoader,
+    '.jsonc': jsonLoader,
     '.js': jsLoader,
     '.ts': jsLoader,
     '.cjs': jsLoader,

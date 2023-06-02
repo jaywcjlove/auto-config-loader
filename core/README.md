@@ -7,6 +7,11 @@ Auto Config Loader
 
 Find and load configuration from a `package.json` property, `rc` file, or `CommonJS` module. It has smart defaults based on traditional expectations in the JavaScript ecosystem. But it's also flexible enough to search anywhere you want and load whatever you want.
 
+## Features
+
+- Support [JSON](https://www.json.org), [JSONC](https://github.com/microsoft/node-jsonc-parser), [JSON5](), [YAML](https://yaml.org/), [TOML](https://toml.io), CJS, [Typescript](https://www.typescriptlang.org/), and ESM config load.
+- Reads config from the nearest `package.json` file
+
 ## Install
 
 ```bash
@@ -18,6 +23,22 @@ $ npm i auto-config-loader
 ```js
 import load from 'auto-config-loader';
 
+// will look for:
+// process.cwd() + '.namespacerc'
+// process.cwd() + '.namespacerc.js'
+// process.cwd() + '.namespacerc.ts'
+// process.cwd() + '.namespacerc.mjs'
+// process.cwd() + '.namespacerc.cjs'
+// process.cwd() + '.namespacerc.json'
+// process.cwd() + '.namespacerc.json5'
+// process.cwd() + '.namespacerc.jsonc'
+// process.cwd() + '.namespacerc.yaml'
+// process.cwd() + '.namespacerc.yml'
+// process.cwd() + '.namespacerc.toml'
+// process.cwd() + 'namespace.config.mjs'
+// process.cwd() + 'namespace.config.cjs'
+// process.cwd() + 'namespace.config.js'
+// ........
 const data = load('namespace', {
   defaults: {
     testItem2: 'some value'
@@ -30,7 +51,7 @@ const data = load('namespace', {
 Load the JS file and return the result, support `.js`, `.cjs`, `.mjs`, `.ts`.
 
 ```js
-// => app.config.js
+// => ./app/app.config.js
 export default {
   name: 'app'
 }
@@ -81,6 +102,8 @@ Discover configurations in the specified directory order. When configuring a too
   'package.json',
   `.${moduleName}rc`,
   `.${moduleName}rc.json`,
+  `.${moduleName}rc.json5`,
+  `.${moduleName}rc.jsonc`,
   `.${moduleName}rc.yaml`,
   `.${moduleName}rc.yml`,
   `.${moduleName}rc.toml`,
@@ -90,6 +113,8 @@ Discover configurations in the specified directory order. When configuring a too
   `.${moduleName}rc.mjs`,
   `.config/${moduleName}rc`,
   `.config/${moduleName}rc.json`,
+  `.config/${moduleName}rc.json5`,
+  `.config/${moduleName}rc.jsonc`,
   `.config/${moduleName}rc.yaml`,
   `.config/${moduleName}rc.yml`,
   `.config/${moduleName}rc.toml`,

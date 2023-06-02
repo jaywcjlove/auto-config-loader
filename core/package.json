@@ -21,7 +21,24 @@
     "coverage": "tsbb test --coverage --bail"
   },
   "keywords": [
+    "rc",
     "config",
+    "loader",
+    "load",
+    "configuration",
+    "cjs",
+    "commonjs",
+    "esm",
+    "es module",
+    "yml-config",
+    "js-config",
+    "ts-config",
+    "toml-config",
+    "yml",
+    "js",
+    "ts",
+    "toml",
+    "typescript",
     "config-loader",
     "auto-config-loader"
   ],
@@ -44,6 +61,7 @@
     "jiti": "^1.18.2",
     "lodash.merge": "^4.6.2",
     "sucrase": "^3.32.0",
+    "jsonc-eslint-parser": "^2.3.0",
     "toml-eslint-parser": "^0.6.0",
     "yaml-eslint-parser": "^1.2.2"
   },

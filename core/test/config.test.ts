@@ -16,6 +16,32 @@ test('Loader .autoconfrc.json', () => {
   expect(data?.name).toBe('auto-conf');
 });
 
+
+test('Loader .autoconfrc.json', () => {
+  const data = autoConf<{ projectName: string; }>(undefined, {
+    cwd: path.resolve(__dirname, '../config-example/ext-json'),
+  });
+  expect(data?.projectName).toBe('ext-json');
+});
+
+test('Loader .autoconfrc.json5', () => {
+  const data = autoConf<any>(undefined, {
+    cwd: path.resolve(__dirname, '../config-example/ext-json5'),
+  });
+  expect(data?.projectName).toBe('ext-json');
+  expect(data?.name).toBe('my-app');
+  expect(data?.max).toBe(Infinity);
+  expect(data?.min).toBe(-Infinity);
+  expect(data?.notANumber).toBe(NaN);
+});
+
+test('Loader .autoconfrc.jsonc', () => {
+  const data = autoConf<{ projectName: string; }>(undefined, {
+    cwd: path.resolve(__dirname, '../config-example/ext-jsonc'),
+  });
+  expect(data?.projectName).toBe('ext-jsonc');
+});
+
 test('Loader .autoconfrc.js ESM', () => {
   const data = autoConf<{ projectName: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../config-example/js-esm'),
