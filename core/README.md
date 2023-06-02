@@ -84,6 +84,7 @@ export interface AutoConfOption<T> {
   cwd?: string;
   /** Default transform js configuration */
   jsOption?: LoadConfOption;
+  ignoreLog?: boolean;
 }
 /**
  * Find and load configuration from a `package.json` property, `rc` file, or `CommonJS` module.

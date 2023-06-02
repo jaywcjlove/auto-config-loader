@@ -26,6 +26,7 @@ export interface AutoConfOption<T> {
   cwd?: string;
   /** Default transform js configuration */
   jsOption?: LoadConfOption;
+  ignoreLog?: boolean;
 }
 
 /**
@@ -34,7 +35,7 @@ export interface AutoConfOption<T> {
  * @param option
  */
 export default function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOption<T> = {}) {
-  const { searchPlaces = [], defaluts = {}, cwd = process.cwd(), jsOption } = option;
+  const { searchPlaces = [], defaluts = {}, cwd = process.cwd(), ignoreLog = false, jsOption } = option;
   const loaders: Loader<T> = {
     '.yml': yamlLoader,
     '.yaml': yamlLoader,
@@ -82,6 +83,6 @@ export default function autoConf<T>(namespace: string = 'autoconf', option: Auto
     }
     throw new Error(`Can't find config file`);
   } catch (error) {
-    console.log(`AUTO_CONF:ERROR: \x1b[31;1m${error.message}\x1b[0m`);
+    !ignoreLog && console.log(`AUTO_CONF:ERROR: \x1b[31;1m${error.message}\x1b[0m`);
   }
 }
