@@ -28,6 +28,7 @@
   "author": "jaywcjlove",
   "license": "MIT",
   "files": [
+    "load-conf.d.ts",
     "lib",
     "src"
   ],
