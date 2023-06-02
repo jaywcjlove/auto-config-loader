@@ -138,13 +138,14 @@ const result = loadConf<Config>(&#x27;./app/app.config.js&#x27;);
 </span><span class="code-line line-number" line="11">  cwd<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
 </span><span class="code-line line-number" line="12">  <span class="token comment">/** Default transform js configuration */</span>
 </span><span class="code-line line-number" line="13">  jsOption<span class="token operator">?</span><span class="token operator">:</span> LoadConfOption<span class="token punctuation">;</span>
-</span><span class="code-line line-number" line="14"><span class="token punctuation">}</span>
-</span><span class="code-line line-number" line="15"><span class="token comment">/**
-</span></span><span class="code-line line-number" line="16"><span class="token comment"> * Find and load configuration from a `package.json` property, `rc` file, or `CommonJS` module.
-</span></span><span class="code-line line-number" line="17"><span class="token comment"> * @param namespace {string} Configuration base name. The default is `autoconf`.
-</span></span><span class="code-line line-number" line="18"><span class="token comment"> * @param option 
-</span></span><span class="code-line line-number" line="19"><span class="token comment"> */</span>
-</span><span class="code-line line-number" line="20"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token generic-function"><span class="token function">autoConf</span><span class="token generic class-name"><span class="token operator">&#x3C;</span><span class="token constant">T</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>namespace<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> option<span class="token operator">?</span><span class="token operator">:</span> AutoConfOption<span class="token operator">&#x3C;</span><span class="token constant">T</span><span class="token operator">></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token operator">&#x26;</span> <span class="token constant">T</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="14">  ignoreLog<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="15"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="16"><span class="token comment">/**
+</span></span><span class="code-line line-number" line="17"><span class="token comment"> * Find and load configuration from a `package.json` property, `rc` file, or `CommonJS` module.
+</span></span><span class="code-line line-number" line="18"><span class="token comment"> * @param namespace {string} Configuration base name. The default is `autoconf`.
+</span></span><span class="code-line line-number" line="19"><span class="token comment"> * @param option 
+</span></span><span class="code-line line-number" line="20"><span class="token comment"> */</span>
+</span><span class="code-line line-number" line="21"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token generic-function"><span class="token function">autoConf</span><span class="token generic class-name"><span class="token operator">&#x3C;</span><span class="token constant">T</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>namespace<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> option<span class="token operator">?</span><span class="token operator">:</span> AutoConfOption<span class="token operator">&#x3C;</span><span class="token constant">T</span><span class="token operator">></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token operator">&#x26;</span> <span class="token constant">T</span><span class="token punctuation">;</span>
 </span></code><input type="hidden" value="import { LoadConfOption } from &#x27;auto-config-loader&#x27;;
 export type LoaderFunc<T> = (filepath: string, content: string, jsOption?: LoadConfOption) => T;
 export type Loader<T> = Record<string, LoaderFunc<T>>;
@@ -158,6 +159,7 @@ export interface AutoConfOption<T> {
   cwd?: string;
   /** Default transform js configuration */
   jsOption?: LoadConfOption;
+  ignoreLog?: boolean;
 }
 /**
  * Find and load configuration from a &#x60;package.json&#x60; property, &#x60;rc&#x60; file, or &#x60;CommonJS&#x60; module.
