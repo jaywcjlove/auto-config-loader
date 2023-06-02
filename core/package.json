@@ -7,7 +7,7 @@
   "types": "./lib/index.d.ts",
   "exports": {
     ".": "./lib/index.js",
-    "./load-conf": "./lib/loader/jsloader.js"
+    "./load-conf": "./lib/loader/js.js"
   },
   "homepage": "https://jaywcjlove.github.io/auto-config-loader",
   "repository": {

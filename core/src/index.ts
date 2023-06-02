@@ -1,17 +1,17 @@
 import fs from 'fs';
 import path from 'path';
 import merge from 'lodash.merge';
-import { jsLoader, LoadConfOption } from './loader/jsloader';
-import { jsonLoader } from './loader/jsonloader';
-import { yamlLoader } from './loader/yamlloader';
-import { tomlLoader } from './loader/tomlloader';
+import { jsLoader, LoadConfOption } from './loader/js';
+import { jsonLoader } from './loader/json';
+import { yamlLoader } from './loader/yaml';
+import { tomlLoader } from './loader/toml';
 import { iniLoader } from './loader/ini';
 import { findConfigFile } from './utils';
 
-export * from './loader/jsloader';
-export * from './loader/jsonloader';
-export * from './loader/yamlloader';
-export * from './loader/tomlloader';
+export * from './loader/js';
+export * from './loader/json';
+export * from './loader/yaml';
+export * from './loader/toml';
 export * from './loader/ini';
 
 export type LoaderFunc<T> = (filepath: string, content: string, jsOption?: LoadConfOption) => T;
