@@ -251,6 +251,47 @@ export default function autoConf<T>(namespace?: string, option?: AutoConfOption<
 }
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>This has the advantage that you can put the configuration of all tools (at least the ones that use <code>auto-config-loader</code>) in one file.</p>
+        <h2 id="loader"><a aria-hidden="true" tabindex="-1" href="#loader" class="anchor"><span class="icon icon-link"></span></a>loader</h2>
+        <p>Modify default <code>.js</code>,<code>.ts</code>,<code>.cjs</code>,<code>.mjs</code> loader parameters.</p>
+        <pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1"><span class="token keyword module">import</span> <span class="token imports">load<span class="token punctuation">,</span> <span class="token punctuation">{</span> jsLoader <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'auto-config-loader'</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"><span class="token keyword">function</span> <span class="token function">loadJS</span><span class="token punctuation">(</span><span class="token parameter">filepath<span class="token punctuation">,</span> content</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="4">  <span class="token keyword control-flow">return</span> <span class="token function">jsLoader</span><span class="token punctuation">(</span>filepath<span class="token punctuation">,</span> content<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="5">    <span class="token comment">// change option...</span>
+</span><span class="code-line line-number" line="6">  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="7"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="8">
+</span><span class="code-line line-number" line="9"><span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token function">load</span><span class="token punctuation">(</span><span class="token string">'namespace'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="10">  <span class="token literal-property property">loaders</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="11">    <span class="token string-property property">'.js'</span><span class="token operator">:</span> loadJS<span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="12">    <span class="token string-property property">'.ts'</span><span class="token operator">:</span> loadJS<span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="13">    <span class="token string-property property">'.cjs'</span><span class="token operator">:</span> loadJS<span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="14">    <span class="token string-property property">'.mjs'</span><span class="token operator">:</span> loadJS<span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="15">  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="16">  <span class="token literal-property property">defaults</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="17">    <span class="token literal-property property">testItem2</span><span class="token operator">:</span> <span class="token string">'some value'</span>
+</span><span class="code-line line-number" line="18">  <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="19"><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></code><input type="hidden" value="import load, { jsLoader } from &#x27;auto-config-loader&#x27;;
+
+function loadJS(filepath, content) {
+  return jsLoader(filepath, content, {
+    // change option...
+  });
+}
+
+const data = load(&#x27;namespace&#x27;, {
+  loaders: {
+    &#x27;.js&#x27;: loadJS,
+    &#x27;.ts&#x27;: loadJS,
+    &#x27;.cjs&#x27;: loadJS,
+    &#x27;.mjs&#x27;: loadJS,
+  },
+  defaults: {
+    testItem2: &#x27;some value&#x27;
+  }
+});
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="yaml-loader"><a aria-hidden="true" tabindex="-1" href="#yaml-loader" class="anchor"><span class="icon icon-link"></span></a>Yaml loader</h2>
         <p>This is an example, the default <code>yaml</code>/<code>yml</code> does not require a loader.</p>
         <pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1"><span class="token keyword module">import</span> <span class="token imports">load</span> <span class="token keyword module">from</span> <span class="token string">'auto-config-loader'</span><span class="token punctuation">;</span>
@@ -260,7 +301,7 @@ export default function autoConf<T>(namespace?: string, option?: AutoConfOption<
 </span><span class="code-line line-number" line="5">  <span class="token keyword control-flow">return</span> yaml<span class="token punctuation">.</span><span class="token method function property-access">parse</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </span><span class="code-line line-number" line="6"><span class="token punctuation">}</span>
 </span><span class="code-line line-number" line="7">
-</span><span class="code-line line-number" line="8"><span class="token keyword control-flow">await</span> <span class="token function">load</span><span class="token punctuation">(</span><span class="token string">'namespace'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="8"><span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token function">load</span><span class="token punctuation">(</span><span class="token string">'namespace'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="9">  <span class="token literal-property property">searchPlaces</span><span class="token operator">:</span> <span class="token punctuation">[</span>
 </span><span class="code-line line-number" line="10">    <span class="token string">'.namespacerc.yaml'</span><span class="token punctuation">,</span>
 </span><span class="code-line line-number" line="11">    <span class="token string">'.namespacerc.yml'</span><span class="token punctuation">,</span>
@@ -280,7 +321,7 @@ function loadYaml(filepath, content) {
   return yaml.parse(content);
 }
 
-await load(&#x27;namespace&#x27;, {
+const data = load(&#x27;namespace&#x27;, {
   searchPlaces: [
     &#x27;.namespacerc.yaml&#x27;,
     &#x27;.namespacerc.yml&#x27;,
@@ -317,6 +358,7 @@ await load(&#x27;namespace&#x27;, {
             <li><a href="#quick-start" class="tocs-link">Quick start</a></li>
             <li><a href="#load-js" class="tocs-link">Load JS</a></li>
             <li><a href="#option" class="tocs-link">Option</a></li>
+            <li><a href="#loader" class="tocs-link">loader</a></li>
             <li><a href="#yaml-loader" class="tocs-link">Yaml loader</a></li>
             <li><a href="#related" class="tocs-link">Related</a></li>
             <li><a href="#contributors" class="tocs-link">Contributors</a></li>
