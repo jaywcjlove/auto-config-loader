@@ -153,6 +153,32 @@ Additionally, you have the option to put a property named after the tool in your
 
 This has the advantage that you can put the configuration of all tools (at least the ones that use `auto-config-loader`) in one file.
 
+## loader
+
+Modify default `.js`,`.ts`,`.cjs`,`.mjs` loader parameters.
+
+```js
+import load, { jsLoader } from 'auto-config-loader';
+
+function loadJS(filepath, content) {
+  return jsLoader(filepath, content, {
+    // change option...
+  });
+}
+
+const data = load('namespace', {
+  loaders: {
+    '.js': loadJS,
+    '.ts': loadJS,
+    '.cjs': loadJS,
+    '.mjs': loadJS,
+  },
+  defaults: {
+    testItem2: 'some value'
+  }
+});
+```
+
 ## Yaml loader
 
 This is an example, the default `yaml`/`yml` does not require a loader.
@@ -165,7 +191,7 @@ function loadYaml(filepath, content) {
   return yaml.parse(content);
 }
 
-await load('namespace', {
+const data = load('namespace', {
   searchPlaces: [
     '.namespacerc.yaml',
     '.namespacerc.yml',
