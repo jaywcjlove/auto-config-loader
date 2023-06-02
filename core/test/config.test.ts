@@ -4,14 +4,14 @@ import autoConf from "../src";
 
 test('Loader .autoconfrc', () => {
   const data = autoConf<{ one: number; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example'),
+    cwd: path.resolve(__dirname, '../../config-example'),
   });
   expect(data?.one).toBe(123);
 });
 
 test('Loader .autoconfrc.json', () => {
   const data = autoConf<{ name: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/autoconfrcjson'),
+    cwd: path.resolve(__dirname, '../../config-example/autoconfrcjson'),
   });
   expect(data?.name).toBe('auto-conf');
 });
@@ -19,14 +19,14 @@ test('Loader .autoconfrc.json', () => {
 
 test('Loader .autoconfrc.json', () => {
   const data = autoConf<{ projectName: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/ext-json'),
+    cwd: path.resolve(__dirname, '../../config-example/ext-json'),
   });
   expect(data?.projectName).toBe('ext-json');
 });
 
 test('Loader .autoconfrc.json5', () => {
   const data = autoConf<any>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/ext-json5'),
+    cwd: path.resolve(__dirname, '../../config-example/ext-json5'),
   });
   expect(data?.projectName).toBe('ext-json');
   expect(data?.name).toBe('my-app');
@@ -37,7 +37,7 @@ test('Loader .autoconfrc.json5', () => {
 
 test('Loader .config/autoconfrc.json5', () => {
   const data = autoConf<any>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/config-dir-json5'),
+    cwd: path.resolve(__dirname, '../../config-example/config-dir-json5'),
   });
   expect(data?.projectName).toBe('ext-json');
   expect(data?.name).toBe('my-app');
@@ -48,56 +48,56 @@ test('Loader .config/autoconfrc.json5', () => {
 
 test('Loader .config/autoconfrc.jsonc', () => {
   const data = autoConf<any>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/config-dir-jsonc'),
+    cwd: path.resolve(__dirname, '../../config-example/config-dir-jsonc'),
   });
   expect(data?.projectName).toBe('ext-jsonc');
 });
 
 test('Loader .autoconfrc.jsonc', () => {
   const data = autoConf<{ projectName: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/ext-jsonc'),
+    cwd: path.resolve(__dirname, '../../config-example/ext-jsonc'),
   });
   expect(data?.projectName).toBe('ext-jsonc');
 });
 
 test('Loader .autoconfrc.js ESM', () => {
   const data = autoConf<{ projectName: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/js-esm'),
+    cwd: path.resolve(__dirname, '../../config-example/js-esm'),
   });
   expect(data?.projectName).toBe('js-esm');
 });
 
 test('Loader .autoconfrc.mjs EXT ESM', () => {
   const data = autoConf<{ projectName: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/ext-mjs'),
+    cwd: path.resolve(__dirname, '../../config-example/ext-mjs'),
   });
   expect(data?.projectName).toBe('ext-mjs');
 });
 
 test('Loader .autoconfrc.js CJS', () => {
   const data = autoConf<{ projectName: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/js-cjs'),
+    cwd: path.resolve(__dirname, '../../config-example/js-cjs'),
   });
   expect(data?.projectName).toBe('js-cjs');
 });
 
 test('Loader .autoconfrc.cjs EXT CJS', () => {
   const data = autoConf<{ projectName: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/js-cjs'),
+    cwd: path.resolve(__dirname, '../../config-example/js-cjs'),
   });
   expect(data?.projectName).toBe('js-cjs');
 });
 
 test('Loader .autoconfrc.ts TypeScript', () => {
   const data = autoConf<{ projectName: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/ext-cjs'),
+    cwd: path.resolve(__dirname, '../../config-example/ext-cjs'),
   });
   expect(data?.projectName).toBe('ext-cjs');
 });
 
 test('Loader pkg/package.json', () => {
   const data = autoConf<{ name: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/pkg'),
+    cwd: path.resolve(__dirname, '../../config-example/pkg'),
   });
   expect(data?.name).toBe('autoconf');
 });
@@ -105,35 +105,35 @@ test('Loader pkg/package.json', () => {
 
 test('Loader autoconf.config.js CJS', () => {
   const data = autoConf<{ projectName: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/ext-config-js'),
+    cwd: path.resolve(__dirname, '../../config-example/ext-config-js'),
   });
   expect(data?.projectName).toBe('ext-config-js');
 });
 
 test('Loader autoconf.config.mjs', () => {
   const data = autoConf<{ projectName: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/ext-config-mjs'),
+    cwd: path.resolve(__dirname, '../../config-example/ext-config-mjs'),
   });
   expect(data?.projectName).toBe('ext-config-mjs');
 });
 
 test('Loader autoconf.config.cjs', () => {
   const data = autoConf<{ projectName: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/ext-config-cjs'),
+    cwd: path.resolve(__dirname, '../../config-example/ext-config-cjs'),
   });
   expect(data?.projectName).toBe('ext-config-cjs');
 });
 
 test('Loader autoconf.config.ts', () => {
   const data = autoConf<{ projectName: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/ext-config-ts'),
+    cwd: path.resolve(__dirname, '../../config-example/ext-config-ts'),
   });
   expect(data?.projectName).toBe('ext-config-ts');
 });
 
 test('Loader .config/autoconfrc', () => {
   const data = autoConf<{ one: number; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/config-dir-rc'),
+    cwd: path.resolve(__dirname, '../../config-example/config-dir-rc'),
   });
   expect(data?.one).toBe(123);
 });
@@ -143,7 +143,7 @@ test('Loader .config/autoconfrc.json', () => {
     defaluts: {
       projectName: 'name'
     },
-    cwd: path.resolve(__dirname, '../config-example/config-dir-rc'),
+    cwd: path.resolve(__dirname, '../../config-example/config-dir-rc'),
   });
   expect(data).toEqual({
     one: 123,
@@ -156,7 +156,7 @@ test('Loader .config/autoconfrc.mjs', () => {
     defaluts: {
       projectName: 'name'
     },
-    cwd: path.resolve(__dirname, '../config-example/config-dir-mjs'),
+    cwd: path.resolve(__dirname, '../../config-example/config-dir-mjs'),
   });
   expect(data).toEqual({
     projectName: 'ext-config-mjs'
@@ -168,7 +168,7 @@ test('Loader .config/autoconfrc.cjs', () => {
     defaluts: {
       projectName: 'name'
     },
-    cwd: path.resolve(__dirname, '../config-example/config-dir-cjs'),
+    cwd: path.resolve(__dirname, '../../config-example/config-dir-cjs'),
   });
   expect(data).toEqual({
     projectName: 'ext-config-cjs'
@@ -180,7 +180,7 @@ test('Loader .config/autoconfrc.js', () => {
     defaluts: {
       projectName: 'name'
     },
-    cwd: path.resolve(__dirname, '../config-example/config-dir-js'),
+    cwd: path.resolve(__dirname, '../../config-example/config-dir-js'),
   });
   expect(data).toEqual({
     projectName: 'ext-config-js'
@@ -192,7 +192,7 @@ test('Loader .config/autoconfrc.ts', () => {
     defaluts: {
       projectName: 'name'
     },
-    cwd: path.resolve(__dirname, '../config-example/config-dir-ts'),
+    cwd: path.resolve(__dirname, '../../config-example/config-dir-ts'),
   });
   expect(data).toEqual({
     projectName: 'ext-config-ts'
@@ -201,7 +201,7 @@ test('Loader .config/autoconfrc.ts', () => {
 
 test('Loader .autoconfrc.yaml', () => {
   const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/ext-yaml'),
+    cwd: path.resolve(__dirname, '../../config-example/ext-yaml'),
   });
   expect(data).toEqual({
     YAML: "YAML Ain't Markup Language™",
@@ -211,7 +211,7 @@ test('Loader .autoconfrc.yaml', () => {
 
 test('Loader .autoconfrc.yml', () => {
   const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/ext-yml'),
+    cwd: path.resolve(__dirname, '../../config-example/ext-yml'),
   });
   expect(data).toEqual({
     YAML: "YAML Ain't Markup Language™",
@@ -221,7 +221,7 @@ test('Loader .autoconfrc.yml', () => {
 
 test('Loader .config/autoconfrc.yml', () => {
   const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/config-dir-yml'),
+    cwd: path.resolve(__dirname, '../../config-example/config-dir-yml'),
   });
   expect(data).toEqual({
     YAML: "YAML Ain't Markup Language™",
@@ -231,7 +231,7 @@ test('Loader .config/autoconfrc.yml', () => {
 
 test('Loader .config/autoconfrc.yaml', () => {
   const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/config-dir-yaml'),
+    cwd: path.resolve(__dirname, '../../config-example/config-dir-yaml'),
   });
   expect(data).toEqual({
     YAML: "YAML Ain't Markup Language™",
@@ -265,21 +265,21 @@ const tomlData = {
 
 test('Loader .autoconfrc.toml', () => {
   const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/ext-toml'),
+    cwd: path.resolve(__dirname, '../../config-example/ext-toml'),
   });
   expect(data).toEqual(tomlData);
 });
 
 test('Loader .config/autoconfrc.toml', () => {
   const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/config-dir-toml'),
+    cwd: path.resolve(__dirname, '../../config-example/config-dir-toml'),
   });
   expect(data).toEqual(tomlData);
 });
 
 test('Loader .autoconfrc.ts', () => {
   const data = autoConf<{ default?: Function; projectName?: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/ext-ts'),
+    cwd: path.resolve(__dirname, '../../config-example/ext-ts'),
   });
   expect(data).toHaveProperty(['default', 'projectName']);
   expect(data?.projectName).toEqual('ext-ts');
@@ -306,21 +306,21 @@ const iniData = {
 
 test('Loader .autoconfrc.ini', () => {
   const data = autoConf<any>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/ext-ini'),
+    cwd: path.resolve(__dirname, '../../config-example/ext-ini'),
   });
   expect(data).toEqual(iniData);
 });
 
 test('Loader .config/autoconfrc.ini', () => {
   const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/config-dir-ini'),
+    cwd: path.resolve(__dirname, '../../config-example/config-dir-ini'),
   });
   expect(data).toEqual(iniData);
 });
 
 test('Loader .autoconfrc.ts (option={ jiti: false })', () => {
   const data = autoConf<{ default?: Function; projectName?: string; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/ext-ts'),
+    cwd: path.resolve(__dirname, '../../config-example/ext-ts'),
     jsOption: {
       jiti: false,
     }

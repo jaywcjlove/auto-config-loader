@@ -1,7 +1,7 @@
 import path from 'path';
 import { loadConf } from "../src/loader/js";
 
-const tsPath = path.resolve(__dirname, '../config-example/ext-ts/.autoconfrc.ts');
+const tsPath = path.resolve(__dirname, '../../config-example/ext-ts/.autoconfrc.ts');
 
 test('loadConf test case', () => {
   // @ts-ignore

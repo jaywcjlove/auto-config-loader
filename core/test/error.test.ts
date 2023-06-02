@@ -4,7 +4,7 @@ import autoConf from '../src';
 test('loadConf test case', () => {
   console.log = jest.fn();
   const data = autoConf<{ one: number; }>(undefined, {
-    cwd: path.resolve(__dirname, '../config-example/12312312'),
+    cwd: path.resolve(__dirname, '../../config-example/12312312'),
   });
   expect(data).toBeUndefined();
   // @ts-ignore
