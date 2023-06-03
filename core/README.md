@@ -165,8 +165,6 @@ export declare function findConfigFile(moduleName: string, root: string, searchP
 
 ## loader
 
-Modify default `.js`,`.ts`,`.cjs`,`.mjs` loader parameters.
-
 
 ### iniLoader
 
@@ -188,24 +186,7 @@ export declare function loadConf<T>(path: string, option?: LoadConfOption): T;
 export declare function jsLoader<T>(filepath: string, content: string, option?: LoadConfOption): T;
 ```
 
-### jsonLoader
-
-```ts
-export declare function jsonLoader<T>(_: string, content: string): T;
-```
-
-### tomlLoader
-
-```ts
-export declare function tomlLoader<T>(_: string, content: string): T;
-```
-
-### yamlLoader
-
-```ts
-export declare function yamlLoader<T>(_: string, content: string): T;
-```
-
+Modify default `.js`,`.ts`,`.cjs`,`.mjs` loader parameters.
 
 ```js
 import load, { jsLoader } from 'auto-config-loader';
@@ -229,7 +210,25 @@ const data = load('namespace', {
 });
 ```
 
-## Yaml loader
+### jsonLoader
+
+```ts
+export declare function jsonLoader<T>(_: string, content: string): T;
+```
+
+### tomlLoader
+
+```ts
+export declare function tomlLoader<T>(_: string, content: string): T;
+```
+
+### yamlLoader
+
+```ts
+export declare function yamlLoader<T>(_: string, content: string): T;
+```
+
+## Custom `Yaml` loader
 
 This is an example, the default `yaml`/`yml` does not require a loader.
 
