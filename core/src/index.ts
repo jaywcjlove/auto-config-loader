@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import merge from 'lodash.merge';
+import mergeFun from 'lodash.merge';
 import { jsLoader, LoadConfOption } from './loader/js';
 import { jsonLoader } from './loader/json';
 import { yamlLoader } from './loader/yaml';
@@ -15,7 +15,7 @@ export * from './loader/yaml';
 export * from './loader/toml';
 export * from './loader/ini';
 
-export { merge };
+export const merge = mergeFun;
 
 export type LoaderFunc<T> = (filepath: string, content: string, jsOption?: LoadConfOption) => T;
 export type Loader<T> = Record<string, LoaderFunc<T>>;
