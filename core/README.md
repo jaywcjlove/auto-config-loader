@@ -72,6 +72,8 @@ const result = loadConf<Config>('./app/app.config.js');
 
 ```ts
 import { LoadConfOption } from 'auto-config-loader';
+import merge from 'lodash.merge';
+export { merge };
 export type LoaderFunc<T> = (filepath: string, content: string, jsOption?: LoadConfOption) => T;
 export type Loader<T> = Record<string, LoaderFunc<T>>;
 export interface AutoConfOption<T> {
@@ -154,9 +156,56 @@ Additionally, you have the option to put a property named after the tool in your
 
 This has the advantage that you can put the configuration of all tools (at least the ones that use `auto-config-loader`) in one file.
 
+
+### findConfigFile
+
+```ts
+export declare function findConfigFile(moduleName: string, root: string, searchPlaces?: string[]): string;
+```
+
 ## loader
 
 Modify default `.js`,`.ts`,`.cjs`,`.mjs` loader parameters.
+
+
+### iniLoader
+
+```ts
+export declare function iniLoader<T>(_: string, content: string): T;
+```
+
+### jsLoader
+
+```ts
+import type { JITIOptions } from 'jiti/dist/types';
+import { Options } from 'sucrase';
+export interface LoadConfOption {
+    jiti?: boolean;
+    jitiOptions?: JITIOptions;
+    transformOption?: Options;
+}
+export declare function loadConf<T>(path: string, option?: LoadConfOption): T;
+export declare function jsLoader<T>(filepath: string, content: string, option?: LoadConfOption): T;
+```
+
+### jsonLoader
+
+```ts
+export declare function jsonLoader<T>(_: string, content: string): T;
+```
+
+### tomlLoader
+
+```ts
+export declare function tomlLoader<T>(_: string, content: string): T;
+```
+
+### yamlLoader
+
+```ts
+export declare function yamlLoader<T>(_: string, content: string): T;
+```
+
 
 ```js
 import load, { jsLoader } from 'auto-config-loader';

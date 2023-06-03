@@ -8,11 +8,14 @@ import { tomlLoader } from './loader/toml';
 import { iniLoader } from './loader/ini';
 import { findConfigFile } from './utils';
 
+export * from './utils';
 export * from './loader/js';
 export * from './loader/json';
 export * from './loader/yaml';
 export * from './loader/toml';
 export * from './loader/ini';
+
+export { merge };
 
 export type LoaderFunc<T> = (filepath: string, content: string, jsOption?: LoadConfOption) => T;
 export type Loader<T> = Record<string, LoaderFunc<T>>;
