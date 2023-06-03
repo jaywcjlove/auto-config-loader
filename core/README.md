@@ -165,14 +165,7 @@ export declare function findConfigFile(moduleName: string, root: string, searchP
 
 ## loader
 
-
-### iniLoader
-
-```ts
-export declare function iniLoader<T>(_: string, content: string): T;
-```
-
-### jsLoader
+### `.js`,`.ts`,`.cjs`,`.mjs`
 
 ```ts
 import type { JITIOptions } from 'jiti/dist/types';
@@ -210,22 +203,68 @@ const data = load('namespace', {
 });
 ```
 
-### jsonLoader
+example:
+
+```ts
+import { jsLoader } from 'auto-config-loader';
+
+const data = jsLoader('/path/to/file/name.js')
+```
+
+### `.ini`
+
+```ts
+export declare function iniLoader<T>(_: string, content: string): T;
+```
+
+example:
+
+```ts
+import { iniLoader } from 'auto-config-loader';
+
+const data = iniLoader(undefined, `...`)
+```
+
+### `.json`,`.jsonc`, `json5`
 
 ```ts
 export declare function jsonLoader<T>(_: string, content: string): T;
 ```
 
-### tomlLoader
+example:
+
+```ts
+import { jsonLoader } from 'auto-config-loader';
+
+const data = jsonLoader(undefined, `{ "a": 123 }`)
+```
+
+### `.toml`
 
 ```ts
 export declare function tomlLoader<T>(_: string, content: string): T;
 ```
 
-### yamlLoader
+example:
+
+```ts
+import { tomlLoader } from 'auto-config-loader';
+
+const data = tomlLoader(undefined, `...`)
+```
+
+### `.yaml`
 
 ```ts
 export declare function yamlLoader<T>(_: string, content: string): T;
+```
+
+example:
+
+```ts
+import { yamlLoader } from 'auto-config-loader';
+
+const data = yamlLoader(undefined, `...`)
 ```
 
 ## Custom `Yaml` loader
