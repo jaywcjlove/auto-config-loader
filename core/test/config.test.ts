@@ -1,9 +1,16 @@
 import path from 'path';
-import autoConf from "../src";
-
+import autoConf from '../src';
+import { autoConf as confLoad } from '../src';
 
 test('Loader .autoconfrc', () => {
   const data = autoConf<{ one: number; }>(undefined, {
+    cwd: path.resolve(__dirname, '../../config-example'),
+  });
+  expect(data?.one).toBe(123);
+});
+
+test('Loader .autoconfrc', () => {
+  const data = confLoad<{ one: number; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example'),
   });
   expect(data?.one).toBe(123);

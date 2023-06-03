@@ -37,7 +37,7 @@ export interface AutoConfOption<T> {
  * @param namespace {string} Configuration base name. The default is `autoconf`.
  * @param option
  */
-export default function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOption<T> = {}) {
+export function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOption<T> = {}) {
   const { searchPlaces = [], default: defaultValue = {}, cwd = process.cwd(), ignoreLog = false, jsOption } = option;
   const loaders: Loader<T> = {
     '.yml': yamlLoader,
@@ -89,3 +89,5 @@ export default function autoConf<T>(namespace: string = 'autoconf', option: Auto
     !ignoreLog && console.log(`AUTO_CONF:ERROR: \x1b[31;1m${error.message}\x1b[0m`);
   }
 }
+
+export default autoConf;

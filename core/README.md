@@ -21,7 +21,9 @@ $ npm i auto-config-loader
 ## Quick start
 
 ```js
-import load from 'auto-config-loader';
+const autoConf = require('auto-config-loader');
+
+import { autoConf } from 'auto-config-loader';
 
 // will look for:
 // process.cwd() + '.namespacerc'
