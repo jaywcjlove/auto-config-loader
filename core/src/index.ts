@@ -32,6 +32,10 @@ export interface AutoConfOption<T> {
   ignoreLog?: boolean;
 }
 
+let configPath = '';
+
+export const getConfigPath = () => configPath;
+
 /**
  * Find and load configuration from a `package.json` property, `rc` file, or `CommonJS` module.
  * @param namespace {string} Configuration base name. The default is `autoconf`.
@@ -54,29 +58,29 @@ export function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOpti
     ...(option.loaders || {}),
   };
   const pkgPath = path.resolve(cwd, 'package.json');
-  const currentSearchPlaces = findConfigFile(namespace, cwd, searchPlaces);
+  configPath = findConfigFile(namespace, cwd, searchPlaces);
   let content = '';
   let resultData: T;
   let loaderFunc: LoaderFunc<T>;
   try {
-    if (currentSearchPlaces) {
-      const extname = path.extname(currentSearchPlaces);
-      const basename = path.basename(currentSearchPlaces);
+    if (configPath) {
+      const extname = path.extname(configPath);
+      const basename = path.basename(configPath);
       if (new RegExp(`^(.?${namespace}rc)$`).test(basename)) {
-        content = fs.readFileSync(currentSearchPlaces, 'utf-8');
+        content = fs.readFileSync(configPath, 'utf-8');
         loaderFunc = loaders['.json'];
       } else if (loaders[extname]) {
-        content = fs.readFileSync(currentSearchPlaces, 'utf-8');
+        content = fs.readFileSync(configPath, 'utf-8');
         loaderFunc = loaders[extname];
       }
     } else if (fs.existsSync(pkgPath)) {
       content = fs.readFileSync(pkgPath, 'utf-8');
-      const result = loaders['.json'](currentSearchPlaces, content);
+      const result = loaders['.json'](configPath, content);
       resultData = (result as Record<string, T>)[namespace];
     }
 
     if (content && loaderFunc) {
-      resultData = loaderFunc(currentSearchPlaces, content, jsOption);
+      resultData = loaderFunc(configPath, content, jsOption);
       if (typeof resultData === 'function') {
         return merge(defaultValue, resultData, { default: resultData });
       }

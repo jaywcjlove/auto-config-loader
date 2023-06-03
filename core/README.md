@@ -307,6 +307,22 @@ export declare const merge: {
 export declare function findConfigFile(moduleName: string, root: string, searchPlaces?: string[]): string;
 ```
 
+### getConfigPath
+
+```ts
+export declare const getConfigPath: () => string;
+```
+
+Example:
+
+```ts
+import { autoConf, getConfigPath } from 'auto-config-loader';
+
+const data = autoConf<Config>('idoc');
+const configPath = getConfigPath();
+// => /.autoconfrc.js
+```
+
 ## Related
 
 - [cosmiconfig](https://github.com/cosmiconfig/cosmiconfig) Find and load configuration from a package.json property, rc file, or CommonJS module
