@@ -41,7 +41,7 @@ import { autoConf } from 'auto-config-loader';
 // process.cwd() + 'namespace.config.cjs'
 // process.cwd() + 'namespace.config.js'
 // ........
-const data = load('namespace', {
+const data = autoConf('namespace', {
   default: {
     testItem2: 'some value'
   }
