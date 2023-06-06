@@ -11,7 +11,7 @@ test('loadConf test case', () => {
   expect(result('good')).toEqual('good123');
 });
 
-test('loadConf test case', () => {
+test('loadConf option=jiti=false test case', () => {
   const result = loadConf<any>(tsPath, { jiti: false });
   expect(result.projectName).toBeUndefined();
   expect(result('good')).toEqual('good123');

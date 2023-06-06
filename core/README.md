@@ -86,6 +86,7 @@ export interface AutoConfOption<T> {
   cwd?: string;
   /** Default transform js configuration */
   jsOption?: LoadConfOption;
+  /** @deprecated use `mustExist` instead */
   ignoreLog?: boolean;
   mustExist?: boolean;
 }

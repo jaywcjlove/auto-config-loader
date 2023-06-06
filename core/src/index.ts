@@ -29,6 +29,7 @@ export interface AutoConfOption<T> {
   cwd?: string;
   /** Default transform js configuration */
   jsOption?: LoadConfOption;
+  /** @deprecated use `mustExist` instead */
   ignoreLog?: boolean;
   mustExist?: boolean;
 }
@@ -48,7 +49,7 @@ export function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOpti
     default: defaultValue = {},
     cwd = process.cwd(),
     ignoreLog = false,
-    mustExist = false,
+    mustExist = ignoreLog || false,
     jsOption,
   } = option;
   const loaders: Loader<T> = {
@@ -101,7 +102,7 @@ export function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOpti
     }
     throw new Error(`Can't find config file`);
   } catch (error) {
-    !ignoreLog && console.log(`AUTO_CONF:ERROR: \x1b[31;1m${error.message}\x1b[0m`);
+    !mustExist && console.log(`AUTO_CONF:ERROR: \x1b[31;1m${error.message}\x1b[0m`);
   }
 }
 

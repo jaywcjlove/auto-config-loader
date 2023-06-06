@@ -344,10 +344,10 @@ test('Loader cwd = undefined', () => {
   expect(console.log.mock.calls[0][0]).toBe(`AUTO_CONF:ERROR: \x1b[31;1mCan't find config file\x1b[0m`);
 });
 
-test('Loader cwd = undefined', () => {
+test('Loader ignoreLog = true', () => {
   console.log = jest.fn();
   const data = autoConf(undefined, { ignoreLog: true });
-  expect(data).toBeUndefined();
+  expect(data).toBeNull();
   // @ts-ignore
   expect(console.log.mock.calls).toHaveLength(0);
 });
