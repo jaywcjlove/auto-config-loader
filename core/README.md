@@ -87,6 +87,7 @@ export interface AutoConfOption<T> {
   /** Default transform js configuration */
   jsOption?: LoadConfOption;
   ignoreLog?: boolean;
+  mustExist?: boolean;
 }
 /**
  * Find and load configuration from a `package.json` property, `rc` file, or `CommonJS` module.
@@ -164,9 +165,9 @@ This has the advantage that you can put the configuration of all tools (at least
 import type { JITIOptions } from 'jiti/dist/types';
 import { Options } from 'sucrase';
 export interface LoadConfOption {
-    jiti?: boolean;
-    jitiOptions?: JITIOptions;
-    transformOption?: Options;
+  jiti?: boolean;
+  jitiOptions?: JITIOptions;
+  transformOption?: Options;
 }
 export declare function loadConf<T>(path: string, option?: LoadConfOption): T;
 export declare function jsLoader<T>(filepath: string, content: string, option?: LoadConfOption): T;

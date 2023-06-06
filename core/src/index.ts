@@ -30,6 +30,7 @@ export interface AutoConfOption<T> {
   /** Default transform js configuration */
   jsOption?: LoadConfOption;
   ignoreLog?: boolean;
+  mustExist?: boolean;
 }
 
 let configPath = '';
@@ -42,7 +43,14 @@ export const getConfigPath = () => configPath;
  * @param option
  */
 export function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOption<T> = {}) {
-  const { searchPlaces = [], default: defaultValue = {}, cwd = process.cwd(), ignoreLog = false, jsOption } = option;
+  const {
+    searchPlaces = [],
+    default: defaultValue = {},
+    cwd = process.cwd(),
+    ignoreLog = false,
+    mustExist = false,
+    jsOption,
+  } = option;
   const loaders: Loader<T> = {
     '.yml': yamlLoader,
     '.yaml': yamlLoader,
@@ -84,6 +92,9 @@ export function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOpti
       if (typeof resultData === 'function') {
         return merge(defaultValue, resultData, { default: resultData });
       }
+    }
+    if (!!mustExist) {
+      return null;
     }
     if (resultData) {
       return merge(defaultValue, resultData);

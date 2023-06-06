@@ -10,3 +10,26 @@ test('loadConf test case', () => {
   // @ts-ignore
   expect(console.log.mock.calls[0][0]).toBe(`AUTO_CONF:ERROR: \x1b[31;1mCan't find config file\x1b[0m`);
 });
+
+test('loadConf options mustExist=true test case', () => {
+  console.log = jest.fn();
+  const data = autoConf<{ one: number; }>(undefined, {
+    cwd: path.resolve(__dirname, '../../config-example/12312312'),
+    mustExist: true,
+  });
+  expect(data).toBeNull();
+  // @ts-ignore
+  expect(console.log.mock.calls).toHaveLength(0);
+});
+
+
+test('loadConf options mustExist=false test case', () => {
+  console.log = jest.fn();
+  const data = autoConf<{ one: number; }>(undefined, {
+    cwd: path.resolve(__dirname, '../../config-example/12312312'),
+    mustExist: false,
+  });
+  expect(data).toBeUndefined();
+  // @ts-ignore
+  expect(console.log.mock.calls[0][0]).toBe(`AUTO_CONF:ERROR: \x1b[31;1mCan't find config file\x1b[0m`);
+});
