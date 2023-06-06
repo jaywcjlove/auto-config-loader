@@ -69,7 +69,7 @@
 </span><span class="code-line line-number" line="18"><span class="token comment">// process.cwd() + 'namespace.config.cjs'</span>
 </span><span class="code-line line-number" line="19"><span class="token comment">// process.cwd() + 'namespace.config.js'</span>
 </span><span class="code-line line-number" line="20"><span class="token comment">// ........</span>
-</span><span class="code-line line-number" line="21"><span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token function">load</span><span class="token punctuation">(</span><span class="token string">'namespace'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="21"><span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token function">autoConf</span><span class="token punctuation">(</span><span class="token string">'namespace'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="22">  <span class="token keyword module">default</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 </span><span class="code-line line-number" line="23">    <span class="token literal-property property">testItem2</span><span class="token operator">:</span> <span class="token string">'some value'</span>
 </span><span class="code-line line-number" line="24">  <span class="token punctuation">}</span>
@@ -94,7 +94,7 @@ import { autoConf } from &#x27;auto-config-loader&#x27;;
 // process.cwd() + &#x27;namespace.config.cjs&#x27;
 // process.cwd() + &#x27;namespace.config.js&#x27;
 // ........
-const data = load(&#x27;namespace&#x27;, {
+const data = autoConf(&#x27;namespace&#x27;, {
   default: {
     testItem2: &#x27;some value&#x27;
   }
