@@ -94,7 +94,7 @@ export function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOpti
         return merge(defaultValue, resultData, { default: resultData });
       }
     }
-    if (!!mustExist && !configPath && !fs.existsSync(pkgPath)) {
+    if (!!mustExist && !configPath && !resultData) {
       return null;
     }
     if (resultData) {
