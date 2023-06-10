@@ -100,9 +100,9 @@ export function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOpti
     if (resultData) {
       return merge(defaultValue, resultData);
     }
-    throw new Error(`Can't find config file`);
+    console.log(`AUTO_CONF:ERROR: \x1b[31;1mCan't find config file\x1b[0m`);
   } catch (error) {
-    !mustExist && console.log(`AUTO_CONF:ERROR: \x1b[31;1m${error.message}\x1b[0m`);
+    console.log(`AUTO_CONF:CATCH:ERROR: \x1b[31;1m${error}\x1b[0m`);
   }
 }
 
