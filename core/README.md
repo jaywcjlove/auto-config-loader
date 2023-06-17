@@ -2,8 +2,9 @@ Auto Config Loader
 ===
 
 [![CI](https://github.com/jaywcjlove/auto-config-loader/actions/workflows/main.yml/badge.svg)](https://github.com/jaywcjlove/auto-config-loader/actions/workflows/main.yml)
-[![NPM version](https://img.shields.io/npm/v/auto-config-loader.svg?style=flat&label=auto-config-loader)](https://npmjs.org/package/auto-config-loader)
+[![NPM version](https://img.shields.io/npm/v/auto-config-loader.svg?style=flat&label=npm)](https://npmjs.org/package/auto-config-loader)
 [![Coverage Status](https://jaywcjlove.github.io/auto-config-loader/badges.svg)](https://jaywcjlove.github.io/auto-config-loader/lcov-report/)
+[![npm Downloads](https://img.shields.io/npm/dm/auto-config-loader?style=flat)](https://www.npmjs.com/package/auto-config-loader)
 
 Find and load configuration from a `package.json` property, `rc` file, or `CommonJS` module. It has smart default based on traditional expectations in the JavaScript ecosystem. But it's also flexible enough to search anywhere you want and load whatever you want.
 
