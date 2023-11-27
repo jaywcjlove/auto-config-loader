@@ -10,6 +10,7 @@
     "./load-conf": "./lib/loader/js.js"
   },
   "homepage": "https://jaywcjlove.github.io/auto-config-loader",
+  "funding": "https://jaywcjlove.github.io/#/sponsor",
   "repository": {
     "type": "git",
     "url": "https://github.com/jaywcjlove/auto-config-loader.git"
