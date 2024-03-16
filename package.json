@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "start": "npm run start --workspace=core",
     "watch": "npm run watch --workspace=core",
     "version": "lerna version --exact --force-publish --no-push --no-git-tag-version",
