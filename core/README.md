@@ -160,7 +160,7 @@ Additionally, you have the option to put a property named after the tool in your
 
 This has the advantage that you can put the configuration of all tools (at least the ones that use `auto-config-loader`) in one file.
 
-## loader
+## Loader
 
 ### `.js`,`.ts`,`.cjs`,`.mjs`
 
@@ -291,7 +291,7 @@ const data = load('namespace', {
 });
 ```
 
-## utils
+## Utils
 
 ### merge
 
