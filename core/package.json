@@ -60,7 +60,7 @@
   },
   "dependencies": {
     "ini": "^5.0.0",
-    "jiti": "^1.18.2",
+    "jiti": "^2.0.0",
     "jsonc-eslint-parser": "^2.3.0",
     "lodash.merge": "^4.6.2",
     "sucrase": "^3.32.0",
