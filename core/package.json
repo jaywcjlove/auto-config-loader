@@ -59,7 +59,7 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
-    "ini": "^4.1.1",
+    "ini": "^5.0.0",
     "jiti": "^1.18.2",
     "jsonc-eslint-parser": "^2.3.0",
     "lodash.merge": "^4.6.2",
