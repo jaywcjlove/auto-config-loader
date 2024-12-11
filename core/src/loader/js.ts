@@ -53,6 +53,12 @@ export async function loadConf<T>(path: string, option: LoadConfOption = {}): Pr
     }
   }
 
+  // ⚠️ 🚨 For some reason, the CI test default does not exist on the Windows platform.
+  // To ensure platform consistency, default has been removed.
+  if (path && path.endsWith('.cjs')) {
+    delete config.default;
+  }
+
   return config;
 }
 
