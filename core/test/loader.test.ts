@@ -3,16 +3,16 @@ import { loadConf } from "../src/loader/js";
 
 const tsPath = path.resolve(__dirname, '../../config-example/ext-ts/.autoconfrc.ts');
 
-test('loadConf test case', () => {
+test('loadConf test case', async () => {
   // @ts-ignore
-  expect(loadConf()).toEqual({});
-  const result = loadConf<any>(tsPath);
+  expect(loadConf()).resolves.toEqual({});
+  const result = await loadConf<any>(tsPath);
   expect(result.projectName).toEqual('ext-ts');
-  expect(result('good')).toEqual('good123');
+  expect(result.default('good')).toEqual('good123');
 });
 
-test('loadConf option=jiti=false test case', () => {
-  const result = loadConf<any>(tsPath, { jiti: false });
-  expect(result.projectName).toBeUndefined();
-  expect(result('good')).toEqual('good123');
+test('loadConf option=jiti=false test case', async () => {
+  const result = await loadConf<any>(tsPath, { jiti: false });
+  expect(result.projectName).toEqual('ext-ts');
+  expect(result.default('good')).toEqual('good123');
 });

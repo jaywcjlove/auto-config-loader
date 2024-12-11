@@ -2,37 +2,37 @@ import path from 'path';
 import autoConf from '../src';
 import { autoConf as confLoad } from '../src';
 
-test('Loader .autoconfrc', () => {
-  const data = autoConf<{ one: number; }>(undefined, {
+test('Loader .autoconfrc', async () => {
+  const data = await autoConf<{ one: number; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example'),
   });
   expect(data?.one).toBe(123);
 });
 
-test('Loader .autoconfrc', () => {
-  const data = confLoad<{ one: number; }>(undefined, {
+test('Loader .autoconfrc', async () => {
+  const data = await confLoad<{ one: number; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example'),
   });
   expect(data?.one).toBe(123);
 });
 
-test('Loader .autoconfrc.json', () => {
-  const data = autoConf<{ name: string; }>(undefined, {
+test('Loader .autoconfrc.json', async () => {
+  const data = await autoConf<{ name: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/autoconfrcjson'),
   });
   expect(data?.name).toBe('auto-conf');
 });
 
 
-test('Loader .autoconfrc.json', () => {
-  const data = autoConf<{ projectName: string; }>(undefined, {
+test('Loader .autoconfrc.json', async () => {
+  const data = await autoConf<{ projectName: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/ext-json'),
   });
   expect(data?.projectName).toBe('ext-json');
 });
 
-test('Loader .autoconfrc.json5', () => {
-  const data = autoConf<any>(undefined, {
+test('Loader .autoconfrc.json5', async () => {
+  const data = await autoConf<any>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/ext-json5'),
   });
   expect(data?.projectName).toBe('ext-json');
@@ -42,8 +42,8 @@ test('Loader .autoconfrc.json5', () => {
   expect(data?.notANumber).toBe(NaN);
 });
 
-test('Loader .config/autoconfrc.json5', () => {
-  const data = autoConf<any>(undefined, {
+test('Loader .config/autoconfrc.json5', async () => {
+  const data = await autoConf<any>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/config-dir-json5'),
   });
   expect(data?.projectName).toBe('ext-json');
@@ -53,100 +53,100 @@ test('Loader .config/autoconfrc.json5', () => {
   expect(data?.notANumber).toBe(NaN);
 });
 
-test('Loader .config/autoconfrc.jsonc', () => {
-  const data = autoConf<any>(undefined, {
+test('Loader .config/autoconfrc.jsonc', async () => {
+  const data = await autoConf<any>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/config-dir-jsonc'),
   });
   expect(data?.projectName).toBe('ext-jsonc');
 });
 
-test('Loader .autoconfrc.jsonc', () => {
-  const data = autoConf<{ projectName: string; }>(undefined, {
+test('Loader .autoconfrc.jsonc', async () => {
+  const data = await autoConf<{ projectName: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/ext-jsonc'),
   });
   expect(data?.projectName).toBe('ext-jsonc');
 });
 
-test('Loader .autoconfrc.js ESM', () => {
-  const data = autoConf<{ projectName: string; }>(undefined, {
+test('Loader .autoconfrc.js ESM', async () => {
+  const data = await autoConf<{ projectName: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/js-esm'),
   });
   expect(data?.projectName).toBe('js-esm');
 });
 
-test('Loader .autoconfrc.mjs EXT ESM', () => {
-  const data = autoConf<{ projectName: string; }>(undefined, {
+test('Loader .autoconfrc.mjs EXT ESM', async () => {
+  const data = await autoConf<{ projectName: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/ext-mjs'),
   });
   expect(data?.projectName).toBe('ext-mjs');
 });
 
-test('Loader .autoconfrc.js CJS', () => {
-  const data = autoConf<{ projectName: string; }>(undefined, {
+test('Loader .autoconfrc.js CJS', async () => {
+  const data = await autoConf<{ projectName: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/js-cjs'),
   });
   expect(data?.projectName).toBe('js-cjs');
 });
 
-test('Loader .autoconfrc.cjs EXT CJS', () => {
-  const data = autoConf<{ projectName: string; }>(undefined, {
+test('Loader .autoconfrc.cjs EXT CJS', async () => {
+  const data = await autoConf<{ projectName: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/js-cjs'),
   });
   expect(data?.projectName).toBe('js-cjs');
 });
 
-test('Loader .autoconfrc.ts TypeScript', () => {
-  const data = autoConf<{ projectName: string; }>(undefined, {
+test('Loader .autoconfrc.ts TypeScript', async () => {
+  const data = await autoConf<{ projectName: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/ext-cjs'),
   });
   expect(data?.projectName).toBe('ext-cjs');
 });
 
-test('Loader pkg/package.json', () => {
-  const data = autoConf<{ name: string; }>(undefined, {
+test('Loader pkg/package.json', async () => {
+  const data = await autoConf<{ name: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/pkg'),
   });
   expect(data?.name).toBe('autoconf');
 });
 
 
-test('Loader autoconf.config.js CJS', () => {
-  const data = autoConf<{ projectName: string; }>(undefined, {
+test('Loader autoconf.config.js CJS', async () => {
+  const data = await autoConf<{ projectName: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/ext-config-js'),
   });
   expect(data?.projectName).toBe('ext-config-js');
 });
 
-test('Loader autoconf.config.mjs', () => {
-  const data = autoConf<{ projectName: string; }>(undefined, {
+test('Loader autoconf.config.mjs', async () => {
+  const data = await autoConf<{ projectName: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/ext-config-mjs'),
   });
   expect(data?.projectName).toBe('ext-config-mjs');
 });
 
-test('Loader autoconf.config.cjs', () => {
-  const data = autoConf<{ projectName: string; }>(undefined, {
+test('Loader autoconf.config.cjs', async () => {
+  const data = await autoConf<{ projectName: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/ext-config-cjs'),
   });
   expect(data?.projectName).toBe('ext-config-cjs');
 });
 
-test('Loader autoconf.config.ts', () => {
-  const data = autoConf<{ projectName: string; }>(undefined, {
+test('Loader autoconf.config.ts', async () => {
+  const data = await autoConf<{ projectName: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/ext-config-ts'),
   });
   expect(data?.projectName).toBe('ext-config-ts');
 });
 
-test('Loader .config/autoconfrc', () => {
-  const data = autoConf<{ one: number; }>(undefined, {
+test('Loader .config/autoconfrc', async () => {
+  const data = await autoConf<{ one: number; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/config-dir-rc'),
   });
   expect(data?.one).toBe(123);
 });
 
-test('Loader .config/autoconfrc.json', () => {
-  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+test('Loader .config/autoconfrc.json', async () => {
+  const data = await autoConf<{ one?: number; projectName?: string; }>(undefined, {
     default: {
       projectName: 'name'
     },
@@ -158,56 +158,68 @@ test('Loader .config/autoconfrc.json', () => {
   });
 });
 
-test('Loader .config/autoconfrc.mjs', () => {
-  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+test('Loader .config/autoconfrc.mjs', async () => {
+  const data = await autoConf<{ one?: number; projectName?: string; }>(undefined, {
     default: {
       projectName: 'name'
     },
     cwd: path.resolve(__dirname, '../../config-example/config-dir-mjs'),
   });
   expect(data).toEqual({
+    default: {
+      projectName: 'ext-config-mjs'
+    },
     projectName: 'ext-config-mjs'
   });
 });
 
-test('Loader .config/autoconfrc.cjs', () => {
-  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+test('Loader .config/autoconfrc.cjs', async () => {
+  const data = await autoConf<{ one?: number; projectName?: string; }>(undefined, {
     default: {
       projectName: 'name'
     },
     cwd: path.resolve(__dirname, '../../config-example/config-dir-cjs'),
   });
   expect(data).toEqual({
+    default: {
+      projectName: 'ext-config-cjs'
+    },
     projectName: 'ext-config-cjs'
   });
 });
 
-test('Loader .config/autoconfrc.js', () => {
-  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+test('Loader .config/autoconfrc.js', async () => {
+  const data = await autoConf<{ one?: number; projectName?: string; }>(undefined, {
     default: {
       projectName: 'name'
     },
     cwd: path.resolve(__dirname, '../../config-example/config-dir-js'),
   });
   expect(data).toEqual({
+    default: {
+      projectName: 'ext-config-js'
+    },
     projectName: 'ext-config-js'
   });
 });
 
-test('Loader .config/autoconfrc.ts', () => {
-  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+test('Loader .config/autoconfrc.ts', async () => {
+  const data = await autoConf<{ one?: number; projectName?: string; }>(undefined, {
     default: {
       projectName: 'name'
     },
     cwd: path.resolve(__dirname, '../../config-example/config-dir-ts'),
   });
   expect(data).toEqual({
+    default: {
+      projectName: 'ext-config-ts'
+    },
     projectName: 'ext-config-ts'
   });
 });
 
-test('Loader .autoconfrc.yaml', () => {
-  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+test('Loader .autoconfrc.yaml', async () => {
+  const data = await autoConf<{ one?: number; projectName?: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/ext-yaml'),
   });
   expect(data).toEqual({
@@ -216,8 +228,8 @@ test('Loader .autoconfrc.yaml', () => {
   });
 });
 
-test('Loader .autoconfrc.yml', () => {
-  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+test('Loader .autoconfrc.yml', async () => {
+  const data = await autoConf<{ one?: number; projectName?: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/ext-yml'),
   });
   expect(data).toEqual({
@@ -226,8 +238,8 @@ test('Loader .autoconfrc.yml', () => {
   });
 });
 
-test('Loader .config/autoconfrc.yml', () => {
-  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+test('Loader .config/autoconfrc.yml', async () => {
+  const data = await autoConf<{ one?: number; projectName?: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/config-dir-yml'),
   });
   expect(data).toEqual({
@@ -236,8 +248,8 @@ test('Loader .config/autoconfrc.yml', () => {
   });
 });
 
-test('Loader .config/autoconfrc.yaml', () => {
-  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+test('Loader .config/autoconfrc.yaml', async () => {
+  const data = await autoConf<{ one?: number; projectName?: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/config-dir-yaml'),
   });
   expect(data).toEqual({
@@ -270,25 +282,25 @@ const tomlData = {
   }
 }
 
-test('Loader .autoconfrc.toml', () => {
-  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+test('Loader .autoconfrc.toml', async () => {
+  const data = await autoConf<{ one?: number; projectName?: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/ext-toml'),
   });
   expect(data).toEqual(tomlData);
 });
 
-test('Loader .config/autoconfrc.toml', () => {
-  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+test('Loader .config/autoconfrc.toml', async () => {
+  const data = await autoConf<{ one?: number; projectName?: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/config-dir-toml'),
   });
   expect(data).toEqual(tomlData);
 });
 
-test('Loader .autoconfrc.ts', () => {
-  const data = autoConf<{ default?: Function; projectName?: string; }>(undefined, {
+test('Loader .autoconfrc.ts', async () => {
+  const data = await autoConf<{ default?: Function; projectName?: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/ext-ts'),
   });
-  expect(data).toHaveProperty(['default', 'projectName']);
+  expect(data).toHaveProperty(['default']);
   expect(data?.projectName).toEqual('ext-ts');
 });
 
@@ -311,42 +323,42 @@ const iniData = {
   "scope": "global",
 }
 
-test('Loader .autoconfrc.ini', () => {
-  const data = autoConf<any>(undefined, {
+test('Loader .autoconfrc.ini', async () => {
+  const data = await autoConf<any>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/ext-ini'),
   });
   expect(data).toEqual(iniData);
 });
 
-test('Loader .config/autoconfrc.ini', () => {
-  const data = autoConf<{ one?: number; projectName?: string; }>(undefined, {
+test('Loader .config/autoconfrc.ini', async () => {
+  const data = await autoConf<{ one?: number; projectName?: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/config-dir-ini'),
   });
   expect(data).toEqual(iniData);
 });
 
-test('Loader .autoconfrc.ts (option={ jiti: false })', () => {
-  const data = autoConf<{ default?: Function; projectName?: string; }>(undefined, {
+test('Loader .autoconfrc.ts (option={ jiti: false })', async () => {
+  const data = await autoConf<{ default?: Function; projectName?: string; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/ext-ts'),
     jsOption: {
       jiti: false,
     }
   });
   expect(data).toHaveProperty(['default']);
-  expect(data?.projectName).toBeUndefined();
+  expect(data?.projectName).toEqual('ext-ts');
 });
 
-test('Loader cwd = undefined', () => {
+test('Loader cwd = undefined', async () => {
   console.log = jest.fn();
-  const data = autoConf();
+  const data = await autoConf();
   expect(data).toBeUndefined();
   // @ts-ignore
   expect(console.log.mock.calls[0][0]).toBe(`AUTO_CONF:ERROR: \x1b[31;1mCan't find config file\x1b[0m`);
 });
 
-test('Loader ignoreLog = true', () => {
+test('Loader ignoreLog = true', async () => {
   console.log = jest.fn();
-  const data = autoConf(undefined, { ignoreLog: true });
+  const data = await autoConf(undefined, { ignoreLog: true });
   expect(data).toBeNull();
   // @ts-ignore
   expect(console.log.mock.calls).toHaveLength(0);

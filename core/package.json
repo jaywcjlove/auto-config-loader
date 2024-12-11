@@ -60,10 +60,10 @@
   },
   "dependencies": {
     "ini": "^5.0.0",
-    "jiti": "^1.18.2",
+    "jiti": "^2.4.1",
     "jsonc-eslint-parser": "^2.3.0",
     "lodash.merge": "^4.6.2",
-    "sucrase": "^3.32.0",
+    "sucrase": "^3.35.0",
     "toml-eslint-parser": "^0.10.0",
     "yaml-eslint-parser": "^1.2.2"
   },

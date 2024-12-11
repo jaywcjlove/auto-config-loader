@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "prepare": "husky",
-    "start": "npm run start --workspace=core",
+    "start": "npm run build --workspace=core",
     "watch": "npm run watch --workspace=core",
     "version": "lerna version --exact --force-publish --no-push --no-git-tag-version",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",

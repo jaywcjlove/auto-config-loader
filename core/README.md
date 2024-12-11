@@ -9,6 +9,8 @@ Auto Config Loader
 
 Find and load configuration from a `package.json` property, `rc` file, or `CommonJS` module. It has smart default based on traditional expectations in the JavaScript ecosystem. But it's also flexible enough to search anywhere you want and load whatever you want.
 
+[V1 To V2 Migration](#v1-to-v2-migration)
+
 ## Features
 
 - Support [JSON](https://www.json.org), [JSONC](https://github.com/microsoft/node-jsonc-parser), [JSON5](https://json5.org/), [YAML](https://yaml.org/), [TOML](https://toml.io), [INI](https://en.wikipedia.org/wiki/INI_file), [CJS](http://www.commonjs.org), [Typescript](https://www.typescriptlang.org/), and ESM config load.
@@ -43,7 +45,7 @@ import { autoConf } from 'auto-config-loader';
 // process.cwd() + 'namespace.config.cjs'
 // process.cwd() + 'namespace.config.js'
 // ........
-const data = autoConf('namespace', {
+const data = await autoConf('namespace', {
   default: {
     testItem2: 'some value'
   }
@@ -68,7 +70,7 @@ interface Config {
   name: string;
 }
 
-const result = loadConf<Config>('./app/app.config.js');
+const result = await loadConf<Config>('./app/app.config.js');
 // => { name: 'app' }
 ```
 
@@ -76,14 +78,14 @@ const result = loadConf<Config>('./app/app.config.js');
 
 ```ts
 import { LoadConfOption } from 'auto-config-loader';
-export type LoaderFunc<T> = (filepath: string, content: string, jsOption?: LoadConfOption) => T;
+export type LoaderFunc<T> = (filepath: string, content: string, jsOption?: LoadConfOption) => T | Promise<T>;
 export type Loader<T> = Record<string, LoaderFunc<T>>;
 export interface AutoConfOption<T> {
   searchPlaces?: string[];
   /** An object that maps extensions to the loader functions responsible for loading and parsing files with those extensions. */
   loaders?: Loader<T>;
   /** Specify default configuration. It has the lowest priority and is applied after extending config. */
-  defaluts?: T;
+  default?: T;
   /** Resolve configuration from this working directory. The default is `process.cwd()` */
   cwd?: string;
   /** Default transform js configuration */
@@ -92,12 +94,14 @@ export interface AutoConfOption<T> {
   ignoreLog?: boolean;
   mustExist?: boolean;
 }
+export declare const getConfigPath: () => string;
 /**
  * Find and load configuration from a `package.json` property, `rc` file, or `CommonJS` module.
  * @param namespace {string} Configuration base name. The default is `autoconf`.
- * @param option 
+ * @param option
  */
-export default function autoConf<T>(namespace?: string, option?: AutoConfOption<T>): {} & T;
+export declare function autoConf<T>(namespace?: string, option?: AutoConfOption<T>): Promise<{} & T>;
+export default autoConf;
 ```
 
 Discover configurations in the specified directory order. When configuring a tool, you can use multiple file formats and put these in multiple places. Usually, a tool would mention this in its own README file, but by default, these are the following places, where `${moduleName}` represents the name of the tool:
@@ -187,7 +191,7 @@ function loadJS(filepath, content) {
   });
 }
 
-const data = load('namespace', {
+const data = await load('namespace', {
   loaders: {
     '.js': loadJS,
     '.ts': loadJS,
@@ -276,7 +280,7 @@ function loadYaml(filepath, content) {
   return yaml.parse(content);
 }
 
-const data = load('namespace', {
+const data = await load('namespace', {
   searchPlaces: [
     '.namespacerc.yaml',
     '.namespacerc.yml',
@@ -298,9 +302,9 @@ const data = load('namespace', {
 ```ts
 export declare const merge: {
   <TObject, TSource>(object: TObject, source: TSource): TObject & TSource;
-  <TObject_1, TSource1, TSource2>(object: TObject_1, source1: TSource1, source2: TSource2): TObject_1 & TSource1 & TSource2;
-  <TObject_2, TSource1_1, TSource2_1, TSource3>(object: TObject_2, source1: TSource1_1, source2: TSource2_1, source3: TSource3): TObject_2 & TSource1_1 & TSource2_1 & TSource3;
-  <TObject_3, TSource1_2, TSource2_2, TSource3_1, TSource4>(object: TObject_3, source1: TSource1_2, source2: TSource2_2, source3: TSource3_1, source4: TSource4): TObject_3 & TSource1_2 & TSource2_2 & TSource3_1 & TSource4;
+  <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2): TObject & TSource1 & TSource2;
+  <TObject, TSource1, TSource2, TSource3>(object: TObject, source1: TSource1, source2: TSource2, source3: TSource3): TObject & TSource1 & TSource2 & TSource3;
+  <TObject, TSource1, TSource2, TSource3, TSource4>(object: TObject, source1: TSource1, source2: TSource2, source3: TSource3, source4: TSource4): TObject & TSource1 & TSource2 & TSource3 & TSource4;
   (object: any, ...otherArgs: any[]): any;
 };
 ```
@@ -325,6 +329,59 @@ import { autoConf, getConfigPath } from 'auto-config-loader';
 const data = autoConf<Config>('idoc');
 const configPath = getConfigPath();
 // => /.autoconfrc.js
+```
+
+## V1 To V2 Migration
+
+This guide provides the steps to migrate to the latest version of the configuration loader API.
+
+### Key Changes
+
+1. **Loader Functions Support Async**
+   - `LoaderFunc<T>` now supports returning `T` or `Promise<T>`.
+   - Update custom loaders to handle asynchronous operations if needed.
+
+   **Example:**
+   ```ts
+   export type LoaderFunc<T> = (filepath: string, content: string, jsOption?: LoadConfOption) => T | Promise<T>;
+   ```
+
+2. **`autoConf` Returns a Promise**
+   - The `autoConf` function now returns a `Promise` instead of a synchronous result.
+   - Update your code to handle asynchronous calls.
+
+   **Example:**
+   ```ts
+   export declare function autoConf<T>(namespace?: string, option?: AutoConfOption<T>): Promise<{} & T>;
+   ```
+
+### Migration Steps
+
+#### 1. Update Custom Loader Functions
+
+If you have custom loaders, update their return types to support asynchronous operations:
+
+**Example:**
+
+```ts
+const jsonLoader: LoaderFunc<MyConfig> = async (filepath, content) => JSON.parse(content);
+```
+
+#### 2. Handle Asynchronous `autoConf` Calls
+
+Update all calls to `autoConf` to use `await` or `.then` to handle Promises:
+
+**Example Using `await`:**
+```ts
+const config = await autoConf('myNamespace', options);
+console.log(config);
+```
+
+**Example Using `.then`:**
+```ts
+autoConf('myNamespace', options).then(config => {
+  console.log(config);
+});
 ```
 
 ## Related

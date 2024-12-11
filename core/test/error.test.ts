@@ -1,9 +1,9 @@
 import path from 'path';
 import autoConf from '../src';
 
-test('loadConf test case', () => {
+test('loadConf test case', async () => {
   console.log = jest.fn();
-  const data = autoConf<{ one: number; }>(undefined, {
+  const data = await autoConf<{ one: number; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/12312312'),
   });
   expect(data).toBeUndefined();
@@ -11,9 +11,9 @@ test('loadConf test case', () => {
   expect(console.log.mock.calls[0][0]).toBe(`AUTO_CONF:ERROR: \x1b[31;1mCan't find config file\x1b[0m`);
 });
 
-test('loadConf error-config test case, wrong configuration loaded', () => {
+test('loadConf error-config test case, wrong configuration loaded', async () => {
   console.log = jest.fn();
-  const data = autoConf<{ one: number; }>(undefined, {
+  const data = await autoConf<{ one: number; }>(undefined, {
     mustExist: true,
     cwd: path.resolve(__dirname, '../../config-example/error-config/mjs'),
   });
@@ -22,9 +22,9 @@ test('loadConf error-config test case, wrong configuration loaded', () => {
   expect(console.log.mock.calls[0][0]).toBe(`AUTO_CONF:CATCH:ERROR: \x1b[31;1mReferenceError: path is not defined\x1b[0m`);
 });
 
-test('loadConf options mustExist=true test case', () => {
+test('loadConf options mustExist=true test case', async () => {
   console.log = jest.fn();
-  const data = autoConf<{ one: number; }>(undefined, {
+  const data = await autoConf<{ one: number; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/12312312'),
     mustExist: true,
   });
@@ -34,9 +34,9 @@ test('loadConf options mustExist=true test case', () => {
 });
 
 
-test('loadConf options mustExist=false test case', () => {
+test('loadConf options mustExist=false test case', async () => {
   console.log = jest.fn();
-  const data = autoConf<{ one: number; }>(undefined, {
+  const data = await autoConf<{ one: number; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/12312312'),
     mustExist: false,
   });

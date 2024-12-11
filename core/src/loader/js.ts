@@ -1,12 +1,15 @@
-import jitiFactory from 'jiti';
-import type { JITIOptions } from 'jiti/dist/types';
+import { createJiti } from 'jiti';
+import type jiti from 'jiti';
 import { transform, Options } from 'sucrase';
 
-let jiti: ReturnType<typeof jitiFactory> | null = null;
+type Jiti = ReturnType<typeof jiti>;
+type JITIOptions = Jiti['options'];
+
+let jitiInstance: ReturnType<typeof jiti> | null = null;
 function lazyJiti(option: JITIOptions = {}, transformOpt = {} as Options) {
   return (
-    jiti ??
-    (jiti = jitiFactory(__filename, {
+    jitiInstance ??
+    (jitiInstance = createJiti(__filename, {
       interopDefault: true,
       ...option,
       transform: (opts) => {
@@ -25,22 +28,28 @@ export interface LoadConfOption {
   transformOption?: Options;
 }
 
-export function loadConf<T>(path: string, option: LoadConfOption = {}): T {
+export async function loadConf<T>(path: string, option: LoadConfOption = {}): Promise<T> {
   const { jiti = true, jitiOptions, transformOption } = option;
-  let config = (function () {
+  let config = await (async function () {
     try {
       if (jiti) {
-        return path ? lazyJiti(jitiOptions, transformOption)(path) : {};
+        return path ? await lazyJiti(jitiOptions, transformOption).import(path) : {};
       } else {
         return path ? require(path) : {};
       }
     } catch {
-      return lazyJiti(jitiOptions, transformOption)(path);
+      return await lazyJiti(jitiOptions, transformOption).import(path);
     }
   })();
-  return config.default ?? config;
+
+  // Ensure both default export and named exports are handled
+  if (config.default) {
+    config = { ...config.default, ...config };
+  }
+
+  return config;
 }
 
-export function jsLoader<T>(filepath: string, content: string, option: LoadConfOption = {}): T {
-  return loadConf<T>(filepath, option);
+export async function jsLoader<T>(filepath: string, content: string, option: LoadConfOption = {}): Promise<T> {
+  return await loadConf<T>(filepath, option);
 }

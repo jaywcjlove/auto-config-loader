@@ -17,7 +17,7 @@ export * from './loader/ini';
 
 export const merge = mergeFun;
 
-export type LoaderFunc<T> = (filepath: string, content: string, jsOption?: LoadConfOption) => T;
+export type LoaderFunc<T> = (filepath: string, content: string, jsOption?: LoadConfOption) => T | Promise<T>;
 export type Loader<T> = Record<string, LoaderFunc<T>>;
 export interface AutoConfOption<T> {
   searchPlaces?: string[];
@@ -43,7 +43,7 @@ export const getConfigPath = () => configPath;
  * @param namespace {string} Configuration base name. The default is `autoconf`.
  * @param option
  */
-export function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOption<T> = {}) {
+export async function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOption<T> = {}) {
   const {
     searchPlaces = [],
     default: defaultValue = {},
@@ -89,7 +89,7 @@ export function autoConf<T>(namespace: string = 'autoconf', option: AutoConfOpti
     }
 
     if (content && loaderFunc) {
-      resultData = loaderFunc(configPath, content, jsOption);
+      resultData = await loaderFunc(configPath, content, jsOption);
       if (typeof resultData === 'function') {
         return merge(defaultValue, resultData, { default: resultData });
       }
