@@ -44,7 +44,13 @@ export async function loadConf<T>(path: string, option: LoadConfOption = {}): Pr
 
   // Ensure both default export and named exports are handled
   if (config.default) {
-    config = { ...config.default, ...config };
+    if (typeof config.default === 'function') {
+      const defaultFunc = config.default;
+      Object.assign(defaultFunc, config);
+      return defaultFunc;
+    } else {
+      config = { ...config.default, ...config };
+    }
   }
 
   return config;
