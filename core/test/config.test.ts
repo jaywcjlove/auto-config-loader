@@ -174,16 +174,13 @@ test('Loader .config/autoconfrc.mjs', async () => {
 });
 
 test('Loader .config/autoconfrc.cjs', async () => {
-  const data = await autoConf<{ one?: number; projectName?: string; }>(undefined, {
+  const data = await autoConf<{ projectName?: string; }>(undefined, {
     default: {
       projectName: 'name'
     },
     cwd: path.resolve(__dirname, '../../config-example/config-dir-cjs'),
   });
   expect(data).toEqual({
-    default: {
-      projectName: 'ext-config-cjs'
-    },
     projectName: 'ext-config-cjs'
   });
 });
