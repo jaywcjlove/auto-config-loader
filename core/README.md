@@ -343,7 +343,11 @@ This guide provides the steps to migrate to the latest version of the configurat
 
    **Example:**
    ```ts
-   export type LoaderFunc<T> = (filepath: string, content: string, jsOption?: LoadConfOption) => T | Promise<T>;
+   export type LoaderFunc<T> = (
+    filepath: string,
+    content: string,
+    jsOption?: LoadConfOption
+  ) => T | Promise<T>;
    ```
 
 2. **`autoConf` Returns a Promise**
@@ -352,7 +356,10 @@ This guide provides the steps to migrate to the latest version of the configurat
 
    **Example:**
    ```ts
-   export declare function autoConf<T>(namespace?: string, option?: AutoConfOption<T>): Promise<{} & T>;
+   export declare function autoConf<T>(
+    namespace?: string,
+    option?: AutoConfOption<T>
+  ): Promise<{} & T>;
    ```
 
 ### Migration Steps
