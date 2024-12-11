@@ -169,15 +169,21 @@ This has the advantage that you can put the configuration of all tools (at least
 ### `.js`,`.ts`,`.cjs`,`.mjs`
 
 ```ts
-import type { JITIOptions } from 'jiti/dist/types';
+import type jiti from 'jiti';
 import { Options } from 'sucrase';
+type Jiti = ReturnType<typeof jiti>;
+type JITIOptions = Jiti['options'];
 export interface LoadConfOption {
-  jiti?: boolean;
-  jitiOptions?: JITIOptions;
-  transformOption?: Options;
+    jiti?: boolean;
+    jitiOptions?: JITIOptions;
+    transformOption?: Options;
 }
-export declare function loadConf<T>(path: string, option?: LoadConfOption): T;
-export declare function jsLoader<T>(filepath: string, content: string, option?: LoadConfOption): T;
+export declare function loadConf<T>(path: string, option?: LoadConfOption): Promise<T>;
+export declare function jsLoader<T>(
+  filepath: string,
+  content: string,
+  option?: LoadConfOption
+): Promise<T>;
 ```
 
 Modify default `.js`,`.ts`,`.cjs`,`.mjs` loader parameters.
@@ -312,7 +318,11 @@ export declare const merge: {
 ### findConfigFile
 
 ```ts
-export declare function findConfigFile(moduleName: string, root: string, searchPlaces?: string[]): string;
+export declare function findConfigFile(
+  moduleName: string,
+  root: string,
+  searchPlaces?: string[]
+): string;
 ```
 
 ### getConfigPath
@@ -371,7 +381,9 @@ If you have custom loaders, update their return types to support asynchronous op
 **Example:**
 
 ```ts
-const jsonLoader: LoaderFunc<MyConfig> = async (filepath, content) => JSON.parse(content);
+const jsonLoader: LoaderFunc<MyConfig> = async (
+  filepath, content
+) => JSON.parse(content);
 ```
 
 #### 2. Handle Asynchronous `autoConf` Calls
