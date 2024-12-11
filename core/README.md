@@ -338,29 +338,29 @@ This guide provides the steps to migrate to the latest version of the configurat
 ### Key Changes
 
 1. **Loader Functions Support Async**
-   - `LoaderFunc<T>` now supports returning `T` or `Promise<T>`.
-   - Update custom loaders to handle asynchronous operations if needed.
+    - `LoaderFunc<T>` now supports returning `T` or `Promise<T>`.
+    - Update custom loaders to handle asynchronous operations if needed.
 
-   **Example:**
-   ```ts
-   export type LoaderFunc<T> = (
-    filepath: string,
-    content: string,
-    jsOption?: LoadConfOption
-  ) => T | Promise<T>;
-   ```
+    **Example:**
+    ```ts
+    export type LoaderFunc<T> = (
+      filepath: string,
+      content: string,
+      jsOption?: LoadConfOption
+    ) => T | Promise<T>;
+    ```
 
 2. **`autoConf` Returns a Promise**
-   - The `autoConf` function now returns a `Promise` instead of a synchronous result.
-   - Update your code to handle asynchronous calls.
+    - The `autoConf` function now returns a `Promise` instead of a synchronous result.
+    - Update your code to handle asynchronous calls.
 
-   **Example:**
-   ```ts
-   export declare function autoConf<T>(
-    namespace?: string,
-    option?: AutoConfOption<T>
-  ): Promise<{} & T>;
-   ```
+    **Example:**
+    ```ts
+    export declare function autoConf<T>(
+      namespace?: string,
+      option?: AutoConfOption<T>
+    ): Promise<{} & T>;
+    ```
 
 ### Migration Steps
 
