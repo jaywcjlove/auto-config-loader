@@ -6,8 +6,16 @@
   "type": "commonjs",
   "types": "./lib/index.d.ts",
   "exports": {
-    ".": "./lib/index.js",
-    "./load-conf": "./lib/loader/js.js"
+    ".": {
+      "require": "./lib/index.js",
+      "import": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./load-conf": {
+      "require": "./lib/loader/js.js",
+      "import": "./lib/loader/js.js",
+      "types": "./lib/loader/js.d.ts"
+    }
   },
   "homepage": "https://jaywcjlove.github.io/auto-config-loader",
   "funding": "https://jaywcjlove.github.io/#/sponsor",
