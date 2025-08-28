@@ -1,6 +1,8 @@
 name: Node.js CI
 
-on: push
+on:
+  # 手动触发
+  workflow_dispatch:
 
 jobs:
   Ubuntu:
