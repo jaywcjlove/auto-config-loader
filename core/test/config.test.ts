@@ -109,6 +109,16 @@ test('Loader pkg/package.json', async () => {
   expect(data?.name).toBe('autoconf');
 });
 
+test('Loader pkg-config/package.json', async () => {
+  const data = await autoConf<{ projectName: string; test: { projectName: string; }; name: string; }>("autoconf", {
+    mustExist: true,
+    cwd: path.resolve(__dirname, '../../config-example/pkg-config'),
+    default: { projectName: "test", test: { projectName: "~~~" }, name: "xx" },
+  });
+  expect(data?.projectName).toBe('test');
+  expect(data?.test.projectName).toBe('~~~');
+  expect(data?.name).toBe('autoconf');
+});
 
 test('Loader autoconf.config.js CJS', async () => {
   const data = await autoConf<{ projectName: string; }>(undefined, {
