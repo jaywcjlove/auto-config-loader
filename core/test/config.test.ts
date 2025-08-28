@@ -356,11 +356,8 @@ test('Loader .autoconfrc.ts (option={ jiti: false })', async () => {
 });
 
 test('Loader cwd = undefined', async () => {
-  console.log = jest.fn();
   const data = await autoConf();
-  expect(data).toBeUndefined();
-  // @ts-ignore
-  expect(console.log.mock.calls[0][0]).toBe(`AUTO_CONF:ERROR: \x1b[31;1mCan't find config file\x1b[0m`);
+  expect(data).toEqual({});
 });
 
 test('Loader ignoreLog = true', async () => {

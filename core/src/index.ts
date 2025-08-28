@@ -82,25 +82,27 @@ export async function autoConf<T>(namespace: string = 'autoconf', option: AutoCo
         content = fs.readFileSync(configPath, 'utf-8');
         loaderFunc = loaders[extname];
       }
-    } else if (fs.existsSync(pkgPath)) {
+    }
+    let pkgContent: T;
+    if (fs.existsSync(pkgPath)) {
       content = fs.readFileSync(pkgPath, 'utf-8');
-      const result = loaders['.json'](configPath, content);
-      resultData = (result as Record<string, T>)[namespace];
+      const result = loaders['.json'](pkgPath, content);
+      pkgContent = (result as Record<string, T>)[namespace];
     }
 
     if (content && loaderFunc) {
       resultData = await loaderFunc(configPath, content, jsOption);
       if (typeof resultData === 'function') {
-        return merge(defaultValue, resultData, { default: resultData });
+        return merge(defaultValue, resultData ?? {}, { ...pkgContent }, { default: resultData });
       }
+    }
+    if (pkgContent) {
+      return merge(defaultValue, { ...resultData }, { ...pkgContent });
     }
     if (!!mustExist && !configPath && !resultData) {
       return null;
     }
-    if (resultData) {
-      return merge(defaultValue, resultData);
-    }
-    console.log(`AUTO_CONF:ERROR: \x1b[31;1mCan't find config file\x1b[0m`);
+    return merge(defaultValue, { ...resultData }, { ...pkgContent });
   } catch (error) {
     console.log(`AUTO_CONF:CATCH:ERROR: \x1b[31;1m${error}\x1b[0m`);
   }

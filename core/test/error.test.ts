@@ -6,9 +6,9 @@ test('loadConf test case', async () => {
   const data = await autoConf<{ one: number; }>(undefined, {
     cwd: path.resolve(__dirname, '../../config-example/12312312'),
   });
-  expect(data).toBeUndefined();
+  expect(data).toEqual({});
   // @ts-ignore
-  expect(console.log.mock.calls[0][0]).toBe(`AUTO_CONF:ERROR: \x1b[31;1mCan't find config file\x1b[0m`);
+  // expect(console.log.mock.calls[0][0]).toBe(`AUTO_CONF:ERROR: \x1b[31;1mCan't find config file\x1b[0m`);
 });
 
 test('loadConf error-config test case, wrong configuration loaded', async () => {
@@ -40,7 +40,5 @@ test('loadConf options mustExist=false test case', async () => {
     cwd: path.resolve(__dirname, '../../config-example/12312312'),
     mustExist: false,
   });
-  expect(data).toBeUndefined();
-  // @ts-ignore
-  expect(console.log.mock.calls[0][0]).toBe(`AUTO_CONF:ERROR: \x1b[31;1mCan't find config file\x1b[0m`);
+  expect(data).toEqual({});
 });
