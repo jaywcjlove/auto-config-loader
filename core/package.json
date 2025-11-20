@@ -71,7 +71,7 @@
     "jiti": "^2.4.1",
     "jsonc-eslint-parser": "^2.3.0",
     "lodash.merge": "^4.6.2",
-    "sucrase": "^3.35.0",
+    "sucrase": "^3.35.1",
     "toml-eslint-parser": "^0.10.0",
     "yaml-eslint-parser": "^1.2.2"
   },
